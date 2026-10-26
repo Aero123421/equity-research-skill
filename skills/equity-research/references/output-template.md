@@ -1,11 +1,80 @@
-# Output template
+# Output templates
 
 Write in the user's language (Japanese question → Japanese answer; keep
 tickers and form names as they are). State each fact once and refer back to
-it. Keep coverage rows to one line. Respect the length guide for the depth
-level set in SKILL.md.
+it.
 
-## Standard / Deep report
+Two modes (see SKILL.md → Output):
+- **Normal mode (default):** conversational, short. The research is just as
+  wide; only the presentation is compact.
+- **Report mode:** full structured report, used when the user asks for a
+  report / 詳しく / 全部, or accepts the offer at the end of a Normal answer.
+
+---
+
+## Normal mode
+
+Mostly prose, light structure. About 300–800 words (日本語 ~800–2,000字),
+excluding sources.
+
+```markdown
+<Answer in 2–4 sentences: the conclusion, the main reason, the main caveat.>
+
+**ポイント / Key facts**
+- <fact with number + period/as-of date> (<short source>)
+- <fact> (<source>)
+- <fact> (<source>)
+
+**見落としやすい点 / Easy to miss**
+<1–3 short points from the wide sweep that change how to read the answer:
+positioning, expectations vs consensus, a time-limited event, a related
+company, or the strongest counter-argument.>
+
+**次に見るところ / What to watch**
+<1–2 items, including the next confirmed dated event if there is one.>
+
+<Optional one line on important data gaps or limits.>
+
+<One-line offer: 「詳しいレポート形式でもまとめられます」 / "Want the full
+report?">
+
+Sources: <short list, titles + dates>
+```
+
+Do not include the coverage table, tag lists or scenario tables here.
+
+### Example (Normal, illustrative — company and figures are fictional)
+
+User: 「A社の株、最近どう？」
+
+```markdown
+A社は10/24の上方修正で株価が2日で約18%上がりましたが、修正後の営業利益予想
+(120億円)はアナリスト予想の平均(約125億円)をまだ下回っていて、「予想ほど
+良くはない」という見方も残っています。上昇の大半は好材料というより売り方の
+買い戻しが効いた可能性があります。
+
+**ポイント**
+- 通期営業利益予想を100億円→120億円に上方修正(10/24、決算短信)
+- 株価は10/23終値2,450円→10/25終値2,890円(+18%)。同じ2日間のTOPIXは+0.6%
+- 信用倍率は0.7倍で売り長(10/23申込分)。上昇局面で売り残が約3割減少
+
+**見落としやすい点**
+- 9月に発行した新株予約権(行使価額修正条項付)の行使が進むと、株価の上値を
+  抑える売りが出やすくなります。残りの行使可能株数は発行済株式の約6%。
+- 主要顧客B社が来週の決算で設備投資計画を出す予定で、A社の受注見通しに直結
+  します。
+
+**次に見るところ**
+- 11/5 B社決算(設備投資計画)、11/12 A社 第2四半期決算
+
+詳しいレポート形式(需給・関連企業・反論・シナリオ込み)でもまとめられます。
+
+Sources: A社 決算短信・業績予想修正(10/24)、JPX 銘柄別信用残(10/26公表)、…
+```
+
+---
+
+## Report mode
 
 ```markdown
 # <Company (code/ticker, market)> — <question in a few words>
@@ -14,6 +83,11 @@ As of <YYYY-MM-DD>. Latest results used: <period, release date>.
 ## Answer
 <2–5 sentences that directly answer the question, with the main reason and
 the main caveat.>
+
+## Key numbers (verified)
+| Number | Value | As-of / period | Basis | Source | Status |
+|---|---|---|---|---|---|
+| ... | ... | ... | 連結 / GAAP … | <primary / media / aggregator> | 2 sources agree / primary checked / unverified |
 
 ## Key findings
 - <Fact with number, period, basis, as-of date> (source)
@@ -75,42 +149,6 @@ what would confirm it.>
 Sources: <titles, dates, URLs>
 ```
 
-## Quick answer
-
-```markdown
-<Direct answer with the number(s), period, as-of date and source.>
-
-**Also worth knowing:** <2–4 bullets from other lenses that change how to read
-the answer — e.g. positioning, upcoming event, peer read-across.>
-
-**Could be wrong if:** <one line: the strongest counter to the answer>
-
-**Coverage:** checked <lenses>; not checked / not found <lenses and why>.
-
-**Next:** [verify] ... / [disconfirm] ...
-```
-
-## Example (Quick, illustrative — company and figures are fictional)
-
-User: 「A社の空売りって多い？」
-
-```markdown
-A社の空売り残高報告では、機関投資家3社が合計で発行済株式の約2.1%を
-売り建てています(10/22計算分、10/24公表)。前月の約1.2%から増えています。
-
-**合わせて見るべきこと:**
-- 信用倍率は0.8倍(10/23申込分、10/26公表)で売り長です。日証金では逆日歩が
-  5日連続で発生しており、借りにくい状態です。
-- 9月に転換社債を発行しているため、空売りの一部はCBアービトラージの
-  ヘッジである可能性があります(推定)。
-- 決算発表は11/7。空売りの増加と決算前のタイミングが重なっています。
-
-**この見方が外れるケース:** 報告者の中心がCBアービトラージなら、方向性の
-売りは見た目より少なく、決算で踏み上げが起きても続きにくいです。
-
-**カバレッジ:** 需給・イベント・ニュースは確認済。業績とバリュエーションは
-簡易確認のみ。コンセンサスは未取得。
-
-**次に調べること:** [verify] CBの発行条件と残高 / [disconfirm] 空売り報告者の
-戦略(ヘッジファンドか証券会社のヘッジか)
-```
+Length guide (excluding sources): Standard ~1,000–2,000 words (日本語
+~3,000–6,000字); themes ~1,500–2,500 words (~4,000–8,000字); Deep up to
+~4,000 words (~12,000字). Keep coverage rows to one line.

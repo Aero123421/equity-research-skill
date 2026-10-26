@@ -23,7 +23,7 @@
   <rect x="0.5" y="0.5" width="959" height="499" rx="16" fill="none" stroke="#e2e8f0"/>
 
   <text class="t h1" x="30" y="44">Research workflow</text>
-  <text class="t sub" x="30" y="66">Sweep wide first, dig where evidence is surprising or contradictory, then try to prove yourself wrong.</text>
+  <text class="t sub" x="30" y="66">Sweep wide, dig where evidence is surprising, try to prove yourself wrong, verify the numbers — then answer short or as a report.</text>
 
   <!-- Step cards -->
   <g>
@@ -90,13 +90,13 @@
     <rect x="790" y="90" width="140" height="180" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
     <rect x="804" y="90" width="112" height="4" rx="2" fill="#7c3aed"/>
     <circle cx="812" cy="120" r="12" fill="#7c3aed"/><text class="t num" x="808" y="124">6</text>
-    <text class="t st" x="830" y="118">Synthesize</text><text class="t st" x="830" y="135">&amp; check</text>
-    <text class="t b" x="802" y="164">priced-in view</text>
-    <text class="t b" x="802" y="180">conditional scenarios</text>
-    <text class="t s" x="802" y="202">consistency pass:</text>
-    <text class="t s" x="802" y="218">tiers, figures, "see</text>
-    <text class="t s" x="802" y="234">below", comparisons</text>
-    <text class="t s" x="802" y="256">+ hygiene checklist</text>
+    <text class="t st" x="830" y="118">Synthesize</text><text class="t st" x="830" y="135">&amp; verify</text>
+    <text class="t b" x="802" y="164">priced-in view,</text>
+    <text class="t b" x="802" y="180">consistency pass</text>
+    <text class="t s" x="802" y="202">key-number ledger</text>
+    <text class="t s" x="802" y="218">re-open sources,</text>
+    <text class="t s" x="802" y="234">re-check status,</text>
+    <text class="t s" x="802" y="256">recompute derived #s</text>
   </g>
 
   <path class="line" d="M170 180 L180 180" marker-end="url(#arrow)"/>
@@ -119,11 +119,11 @@
 
   <!-- Budgets -->
   <rect x="480" y="340" width="450" height="136" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text class="t bt" x="496" y="366">Depth &amp; hard budget (searches + fetches)</text>
+  <text class="t bt" x="496" y="366">Research depth &amp; budget (searches + fetches)</text>
   <g>
-    <text class="t b" x="496" y="392" font-weight="700">Quick</text><text class="t b" x="610" y="392">≤ 30</text><text class="t s" x="670" y="392">narrow question · ~300–600 words</text>
-    <text class="t b" x="496" y="414" font-weight="700">Standard</text><text class="t b" x="610" y="414">≤ 80</text><text class="t s" x="670" y="414">default · ~1,000–2,000 words</text>
+    <text class="t b" x="496" y="392" font-weight="700">Quick</text><text class="t b" x="610" y="392">≤ 30</text><text class="t s" x="670" y="392">narrow factual question</text>
+    <text class="t b" x="496" y="414" font-weight="700">Standard</text><text class="t b" x="610" y="414">≤ 80</text><text class="t s" x="670" y="414">default</text>
     <text class="t b" x="496" y="436" font-weight="700">Standard-wide</text><text class="t b" x="610" y="436">≤ 120</text><text class="t s" x="670" y="436">themes, comparisons</text>
-    <text class="t b" x="496" y="458" font-weight="700">Deep</text><text class="t b" x="610" y="458">≤ 160</text><text class="t s" x="670" y="458">詳しく / full report · ~4,000 words</text>
+    <text class="t b" x="496" y="458" font-weight="700">Deep</text><text class="t b" x="610" y="458">≤ 160</text><text class="t s" x="670" y="458">詳しく / thorough research</text>
   </g>
 </svg>

@@ -13,10 +13,11 @@ description: >-
   looks cheap or risky — even if they only ask one narrow question. Triggers
   include 銘柄, 株価, 決算, 業績, 上方修正, 下方修正, 関連銘柄, 空売り, 信用残,
   需給, 割安, 急騰, 急落, TOB, 日本株, 米国株, 10-K, earnings, short interest,
-  catalyst, valuation, stock analysis.
+  catalyst, valuation, stock analysis. Answers concisely by default and gives a
+  full structured report on request.
 license: Apache-2.0
 metadata:
-  version: "0.4.1"
+  version: "0.5.0"
   markets: "JP, US"
   last_reviewed: "2026-10-26"
 ---
@@ -89,15 +90,19 @@ Classify the request; it decides which lenses are mandatory (full matrix in
 Set depth and a **hard budget of tool calls (web searches + page fetches
 combined)**:
 
-| Depth | When | Tool-call budget | Answer length |
-|---|---|---|---|
-| Quick | Narrow factual question | ≤ 30 | ~300–600 words (日本語 ~1,000–2,000字) |
-| Standard (default) | Most single-stock, earnings, positioning and price-move questions | ≤ 80 | ~1,000–2,000 words (日本語 ~3,000–6,000字) |
-| Standard-wide | Theme / sector discovery and multi-company comparisons | ≤ 120 | ~1,500–2,500 words (日本語 ~4,000–8,000字) |
-| Deep | User asks for 詳しく/徹底的に/full report, or high stakes | ≤ 160 | up to ~4,000 words (日本語 ~12,000字) |
+| Depth | When | Tool-call budget |
+|---|---|---|
+| Quick | Narrow factual question | ≤ 30 |
+| Standard (default) | Most single-stock, earnings, positioning and price-move questions | ≤ 80 |
+| Standard-wide | Theme / sector discovery and multi-company comparisons | ≤ 120 |
+| Deep | User asks for 詳しく/徹底的に/thorough research, or high stakes | ≤ 160 |
 
-Lengths exclude the source list. Tables count; keep them tight. Shorten by
-cutting repetition, never by dropping these:
+Depth decides how much you **research**. How much you **show** is decided
+separately by the output mode (see Output): research wide, answer short unless
+a report is asked for.
+
+When writing (in either mode), shorten by cutting repetition, never by dropping
+these:
 - the single most non-obvious finding (e.g. which product actually drove the
   order recovery);
 - primary-filing figures that decide the answer (for earnings: operating
@@ -106,7 +111,7 @@ cutting repetition, never by dropping these:
   management commentary (guidance changes, timelines, demand comments);
 - the most important market event of the last 30 days for this stock/theme;
 - at least one peer, customer or supplier read-across with numbers;
-- the dated next events (see Output item 7);
+- the dated next events;
 - for themes: the exposure figure for each top-tier name (theme share of
   sales, theme orders, or segment numbers), and a "priced in" table (price
   with date, forward P/E or similar, 1M/YTD move) for the top 5+ names.
@@ -266,41 +271,106 @@ once purely for consistency:
   basis; if it holds only after an adjustment (e.g. beta), state the
   adjustment, otherwise remove the claim.
 
+### Step 7 — Verify the key numbers
+
+Instructions alone do not stop numeric errors; this step is a separate pass.
+
+1. **Keep a key-number ledger while you research.** List the 5–10 numbers
+   and dates the conclusion actually rests on (price moves, results,
+   guidance, contract sizes, share counts, positioning figures, event dates).
+   For each record: value, period/as-of date, basis (連結/単体,
+   GAAP/adjusted), source URL, source type (primary / reputable media /
+   aggregator / blog), and whether a second source agrees.
+2. **Only ledger numbers may carry the conclusion.** A number that rests on a
+   single aggregator or blog is marked unverified; it can be mentioned as
+   such but must not decide the answer.
+3. **Verification pass after drafting.** For the top numbers in the ledger:
+   - re-open the source and confirm the exact value, period and date —
+     prefer the primary document (決算短信 / TDnet / EDINET / SEC filing /
+     company IR) when reachable;
+   - for time-limited items (warrants, lock-ups, offers, buybacks,
+     contracts), search for the latest disclosure and confirm their current
+     status;
+   - recompute every number you derived (percent changes, multiples,
+     "x times", dilution, tranche sizes) from its stated inputs — use a code
+     tool if one is available;
+   - fix the draft wherever the ledger changed.
+4. **Independent check when possible.** If your environment can start a
+   separate agent (sub-agent / task tool), give a fresh agent the ledger and
+   the draft and ask it to verify each number against sources without
+   having seen your research. Apply its corrections. If not, do the pass
+   yourself, deliberately reading each source as if for the first time.
+
+Reserve roughly 10–15% of the tool-call budget for this step.
+
 ## Output
 
-Use the structure in `references/output-template.md`. Include:
+There are two output modes. Research depth (Step 1) and output mode are
+independent: a Deep investigation can still be answered in Normal mode.
+
+### Normal mode (default)
+
+Use for ordinary questions. Write a conversational answer, mostly prose with
+light structure, in the user's language:
+
+- **Length:** about 300–800 words (日本語 ~800–2,000字), excluding sources.
+  Quick questions can be shorter.
+- **Answer first**, in 2–4 sentences.
+- **The key facts** behind it (3–6 items), each with its date/period and a
+  short source.
+- **What is easy to miss** — 1–3 points from the wider sweep that change how
+  to read the answer (positioning, expectations vs consensus, a time-limited
+  event, a related company, the strongest counter-argument). This is where
+  the breadth of the research shows; do not drop it.
+- **What to watch / check next** — 1–2 items, including the next confirmed
+  dated event if there is one.
+- A one-line note on important gaps or data limits, if any.
+- End with a one-line offer of the full report (e.g. 「詳しいレポート形式でも
+  まとめられます」). If the user accepts, produce Report mode from the research
+  already done instead of starting over.
+
+Do not show the coverage table, tag lists or scenario tables in Normal mode;
+the research steps still happen, only the presentation is shorter.
+
+### Report mode
+
+Use when the user asks for a report, 詳しく/徹底的に/全部/レポート, a full
+write-up, or accepts the offer above. Follow `references/output-template.md`:
 
 1. **Answer first** — direct answer to the question.
-2. **Key findings** — decision-relevant facts with date and source. State
+2. **Key numbers** — the verified ledger from Step 7 (value, as-of,
+   basis, source, verification status).
+3. **Key findings** — decision-relevant facts with date and source. State
    each fact once; later sections refer back instead of repeating it.
-3. **Coverage table** — every lens, one line each, with a text status:
+4. **Coverage table** — every lens, one line each, with a text status:
    Checked / Partial / Not found / N/A (in Japanese: 確認済 / 一部 /
    未取得 / 対象外). Give a reason for Partial, Not found and N/A. Mark
    lenses unrelated to the question N/A rather than padding them.
-4. **Contradictions & surprises** and how far they were resolved.
-5. **Related companies** — relation type (competitor, customer, supplier,
+5. **Contradictions & surprises** and how far they were resolved.
+6. **Related companies** — relation type (competitor, customer, supplier,
    parent, substitute, same-theme-unverified) and the evidence.
-6. **Strongest case against the conclusion** (from Step 5), plus the main
+7. **Strongest case against the conclusion** (from Step 5), plus the main
    supporting points.
-7. **Next dated events** — at least two dates confirmed by sources fetched in
-   this run (company earnings or event, key peer/customer results, central
-   bank or data releases), each marked confirmed (with source) or estimated.
-   Dates from memory count as estimated.
-8. **Next investigations** — 3–5 prioritized items tagged `verify` /
+8. **Next dated events** — at least two dates confirmed by sources fetched in
+   this run, each marked confirmed (with source) or estimated. Dates from
+   memory count as estimated.
+9. **Next investigations** — 3–5 prioritized items tagged `verify` /
    `disconfirm` / `compare` / `fill_gap` / `monitor`, each with why it matters
    and exactly what to search or read. Include at least one `disconfirm`.
-   If the user wants more, carry these out.
-9. **Data caveats** — lags, secondary data, definitional differences,
-   conflicts between sources, missing data.
-10. **Sources** with titles and dates.
+10. **Data caveats** — lags, secondary data, definitional differences,
+    conflicts between sources, missing data.
+11. **Sources** with titles and dates.
 
-Match the user's language (Japanese question → Japanese answer). Respect the
-length guide for the depth level. A Quick answer compresses items 3–9 into a
-few lines but still shows coverage status, one dated event and two next
-investigations. For Quick positioning questions, the most useful extras are
-the neighbouring positioning data first (信用残 → 貸借倍率/逆日歩 and
-空売り残高報告; short interest → borrow cost, days to cover and options),
-then the next catalyst.
+Report length guide (excluding sources): Standard ~1,000–2,000 words
+(日本語 ~3,000–6,000字); themes ~1,500–2,500 words (~4,000–8,000字); Deep up
+to ~4,000 words (~12,000字).
+
+### Both modes
+
+Match the user's language (Japanese question → Japanese answer). For
+positioning questions, the most useful extras are the neighbouring
+positioning data first (信用残 → 貸借倍率/逆日歩 and 空売り残高報告; short
+interest → borrow cost, days to cover and options), then the next catalyst.
 
 ## Data hygiene checklist (apply before answering)
 
@@ -331,13 +401,15 @@ then the next catalyst.
 - [ ] Related-company links backed by evidence or labelled unverified
 - [ ] Disconfirmation aimed at the headline conclusion
 - [ ] Conclusion, rankings and coverage statuses consistent with the body
-- [ ] Within the tool-call budget and length guide
+- [ ] Key-number ledger kept and verification pass (Step 7) done
+- [ ] Output mode chosen: Normal by default, Report only when asked
+- [ ] Within the tool-call budget and the length guide for the mode
 
 ## Reference files
 
 - `references/coverage-map.md` — minimum check per lens, mandatory lenses by
   request type, contradiction patterns, prioritization and stopping.
-- `references/output-template.md` — report templates and an example.
+- `references/output-template.md` — Normal and Report templates with examples.
 - `references/disclosures-earnings.md` — JP/US filings, what to read in them,
   earnings checklist, accounting differences, red flags, capital policy.
 - `references/supply-demand-jp.md` — 空売り, 信用残 (daily since 2026-09),

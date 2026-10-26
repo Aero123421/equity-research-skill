@@ -66,41 +66,53 @@ The skill loads in three layers, called *progressive disclosure*:
 6. **Synthesize & check.** Build the priced-in view and conditional scenarios.
    Then run a consistency pass: tiers, figures, cross-references and
    comparative claims must all match.
+7. **Verify the key numbers.** Keep a ledger of the 5–10 numbers the
+   conclusion rests on, each with its source, date and basis. After drafting:
+   - re-open the sources, preferring primary documents;
+   - re-check the status of time-limited items (warrants, lock-ups, offers);
+   - recompute every derived figure.
+
+   Where the agent can start a sub-agent, a fresh agent checks the ledger
+   independently.
 
 ## The 14 lenses
 
 ![14 research lenses](docs/images/coverage-lenses.svg)
 
-Every answer includes a coverage table that shows the status of each lens:
-Checked / Partial / Not found / N/A. Blind spots stay visible instead of
-silently missing.
+All 14 lenses are researched for every question. In Report mode, the answer
+includes a coverage table that shows the status of each lens: Checked /
+Partial / Not found / N/A. Blind spots stay visible instead of silently
+missing.
 
-## What an answer looks like
+## What an answer looks like: two output modes
 
-```markdown
-## Answer            ← direct answer first
-## Key findings      ← numbers with period, basis, as-of date, source
-## Coverage          ← 14 lenses × Checked / Partial / Not found / N/A
-## Contradictions & surprises
-## Related companies ← relation type (customer / competitor / supplier …) + evidence
-## Strongest case against this conclusion
-## Next dated events ← ≥2 dates confirmed by fetched sources
-## Next investigations ← [verify] [disconfirm] [compare] [fill_gap] [monitor]
-## Data caveats      ← lags, secondary sources, conflicts, gaps
-Sources
-```
+Research depth and output length are separate. The agent always researches
+wide, but by default it answers short.
 
-Short example (fictional company):
+| | **Normal mode (default)** | **Report mode** |
+|---|---|---|
+| When | Everyday questions | 「詳しく」「レポートで」「全部」, or accepting the offer at the end of a Normal answer |
+| Length | ~300–800 words (日本語 ~800–2,000字) | Full structured report |
+| Shape | Prose: answer → key facts with dates → easy-to-miss points → what to watch | Answer → verified key numbers → coverage table → contradictions → related companies → strongest counter-case → dated events → next investigations → caveats |
 
-> A社の空売り残高報告では、機関3社が合計で発行済株式の約2.1%を売り建てています
-> (10/22計算分、10/24公表)。
-> **合わせて見るべきこと:**
-> - 信用倍率0.8倍(10/23申込分)で売り長です。
-> - 逆日歩が5日連続で発生しています。
-> - 9月にCBを発行しているため、空売りの一部はヘッジの可能性があります。
+Normal mode example (fictional company):
+
+> A社は10/24の上方修正で株価が2日で約18%上がりました。ただし、修正後の営業利益予想
+> (120億円)は、アナリスト予想の平均(約125億円)をまだ下回っています。上昇の大半は、
+> 売り方の買い戻しが効いた可能性があります。
 >
-> **外れるケース:** 報告者の中心がCBアービトラージなら、踏み上げの燃料は見た目より少ないです。
-> **次に調べること:** [verify] CBの残高 / [disconfirm] 報告者の戦略
+> **ポイント**
+> - 通期営業利益予想を100億円から120億円に上方修正(10/24、決算短信)
+> - 2日間で+18%。同じ期間のTOPIXは+0.6%
+> - 信用倍率0.7倍の売り長(10/23申込分)
+>
+> **見落としやすい点**
+> - 行使価額修正条項付の新株予約権(発行済株式の約6%)が残っていて、上値を抑えやすいです。
+> - 主要顧客B社の設備投資計画が11/5に出ます。
+>
+> **次に見るところ:** 11/5 B社決算、11/12 A社 第2四半期決算
+>
+> 詳しいレポート形式でもまとめられます。
 
 ## Highlights
 
@@ -132,7 +144,14 @@ Short example (fictional company):
   | Standard-wide (themes) | ≤ 120 |
   | Deep (詳しく) | ≤ 160 |
 
-  Each depth also has a length guide, so answers stay usable.
+  Answer length is set by the output mode, not by the depth.
+- **Number verification.** The agent keeps a key-number ledger. After
+  drafting, it:
+  - re-opens the sources;
+  - re-checks the status of time-limited items;
+  - recomputes derived figures;
+  - when sources conflict, uses the primary or majority value, never a lone
+    outlier.
 - **Safety.** Web content is treated as data, never as instructions. The
   skill gives no buy/sell calls, only conditional scenarios.
 
@@ -168,6 +187,9 @@ What the results show:
   patterns found: build a dated disclosure timeline first, re-check the status
   of time-limited items, handle conflicting sources, and recompute derived
   numbers.
+
+These results are for v0.4.0. v0.5.0 adds Normal and Report output modes
+and the number-verification step, and has not been re-benchmarked yet.
 
 Method, caveats (semi-blind grading, single runs, a shared search quota that
 hurt late with-skill runs) and all grading files:
@@ -215,6 +237,7 @@ Just ask:
 - 「レーザーテック（6920）って今どうなの？詳しく調べて」
 - 「データセンター向け電力設備で、本当に恩恵を受けている銘柄は？」
 - 「フジクラの信用残ってどうなってる？」
+- 「キオクシアについて詳しくレポートでまとめて」 (Report mode)
 - "How did Tesla's latest quarter look, and why did the stock react that way?"
 - "Is SMCI a short-squeeze candidate?"
 
@@ -280,6 +303,14 @@ is subject to its source's terms.
 - **関連企業は関係の種類と根拠で示します。**
   関係の種類は顧客、競合、仕入先、「同テーマ・未検証」などです。
   ニュースの「関連銘柄」リストは、恩恵の根拠として扱いません。
+- **普段は短く答えます(普通モード)。**
+  調査は14観点を広く行ったうえで、回答は会話の長さにまとめます。
+  「詳しく」「レポートで」と頼まれたときだけ、フルのレポート形式で出します。
+- **重要な数字は検証してから使います。**
+  結論を支える数字は、出典・時点・基準(連結か単体か等)を記録して管理します。回答を書いた後に、
+  - 出典を開き直して値を確認します。
+  - 期限のある情報(ワラント・ロックアップ等)は、今の状態を再確認します。
+  - 自分で計算した数値は検算します。
 - **次の調査と、日付付きの今後のイベントを提案します。**
   次の調査には verify / disconfirm / compare / fill_gap / monitor のタグが付きます。
 - **調査量に上限があります。**
