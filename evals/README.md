@@ -70,3 +70,19 @@ Standard-wide 120 and Deep 160. The aim is to leave more room for the
 freshness sweep, market comparison and dated-event checks. The answer-length
 guides are unchanged. The scores above were measured with the earlier
 budgets.
+
+## Held-out benchmark (2026-10-26)
+
+This benchmark uses four recent stocks that were never used during
+development. Each prompt was answered by three models (Haiku, Sonnet and Opus
+5.5), with and without the skill. An Opus grader scored the answers blind, and
+a separate agent fact-checked their figures.
+
+| | Without | With |
+|---|---|---|
+| Rubric pass rate | 49% | 95% |
+| Usefulness (1–10) | 4.83 | 7.67 |
+| Wrong claims | 6/72 | 5/72 |
+
+Full method, caveats and grading files are in
+[`benchmark-2026-10-26/`](benchmark-2026-10-26/).

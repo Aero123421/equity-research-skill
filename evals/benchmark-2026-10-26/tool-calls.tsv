@@ -1,0 +1,25 @@
+case	config	calls	note
+jp-datasection	haiku_with	28	search-refused
+jp-datasection	haiku_without	20	
+jp-datasection	opus_with	76	search-refused(only 5 searches)
+jp-datasection	opus_without	53	search-refused
+jp-datasection	sonnet_with	46	search-refused(only 6 searches)
+jp-datasection	sonnet_without	23	search-refused
+jp-kioxia	haiku_with	37	search-refused
+jp-kioxia	haiku_without	18	
+jp-kioxia	opus_with	81	search-refused(10 searches)
+jp-kioxia	opus_without	31	
+jp-kioxia	sonnet_with	54	search-refused
+jp-kioxia	sonnet_without	34	
+us-coreweave	haiku_with	24	search-refused
+us-coreweave	haiku_without	9	
+us-coreweave	opus_with	61	search-refused(only 5 searches)
+us-coreweave	opus_without	18	
+us-coreweave	sonnet_with	46	search-refused
+us-coreweave	sonnet_without	7	
+us-spacex	haiku_with	20	search-refused
+us-spacex	haiku_without	16	
+us-spacex	opus_with	80	
+us-spacex	opus_without	23	
+us-spacex	sonnet_with	71	
+us-spacex	sonnet_without	15	

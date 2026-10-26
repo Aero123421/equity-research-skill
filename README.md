@@ -138,23 +138,52 @@ Short example (fictional company):
 
 ## Evaluation
 
+### Held-out benchmark: recent stocks × 3 models (blind)
+
+![Held-out benchmark by model](docs/images/benchmark-models.svg)
+
+The benchmark used four stocks that were in the news and were never used
+during development:
+- データセクション
+- キオクシア
+- CoreWeave
+- SpaceX
+
+Each prompt was answered by Haiku 5.5, Sonnet 5.5 and Opus 5.5, with and
+without the skill, for 24 answers in total. Grading was blind: an Opus grader
+saw answers labelled A–F. A separate agent fact-checked 144 numeric or date
+claims against sources.
+
+| | Without skill | With skill |
+|---|---|---|
+| Rubric pass rate | 49% | **95%** |
+| Usefulness (1–10) | 4.83 | **7.67** |
+| Average rank (of 6) | 4.92 | **2.08** |
+| Wrong claims | 6 / 72 | 5 / 72 |
+
+What the results show:
+- The skill won all 12 same-model pairs.
+- Haiku with the skill (6.25) slightly outscored Opus without it (6.00).
+- Factual accuracy did **not** improve. v0.4.1 adds rules aimed at the error
+  patterns found: build a dated disclosure timeline first, re-check the status
+  of time-limited items, handle conflicting sources, and recompute derived
+  numbers.
+
+Method, caveats (semi-blind grading, single runs, a shared search quota that
+hurt late with-skill runs) and all grading files:
+[`evals/benchmark-2026-10-26/`](evals/benchmark-2026-10-26/).
+
+### Development iterations
+
 ![Evaluation results](docs/images/eval-results.svg)
 
-Six realistic prompts:
-- JP deep dive
-- US earnings reaction
-- JP/US theme
-- US short squeeze
-- JP margin balances (quick)
-- US price move
-
-Each was run with and without the skill and graded against
-[`evals/rubric.md`](evals/rubric.md). Three rounds of fixes covered:
+Six development prompts were run with and without the skill and graded
+against [`evals/rubric.md`](evals/rubric.md). Three rounds of fixes covered:
 - counter-arguments aimed at the conclusion itself;
-- a market-comparison gate before attributing price moves;
+- a market-comparison gate;
 - dated next events;
 - consistency checks;
-- tool-call budgets.
+- budgets.
 
 See [`evals/README.md`](evals/README.md).
 
@@ -264,12 +293,39 @@ is subject to its source's terms.
 
 ### 評価
 
-同じモデルでSkillあり・なしを比較しました。
+#### 話題の銘柄でのベンチマーク
 
-| ラウンド | 対象 | 結果 |
+対象は開発に使っていない4銘柄です。
+- データセクション
+- キオクシア
+- CoreWeave
+- SpaceX
+
+Haiku・Sonnet・Opus（いずれも5.5）のそれぞれで、Skillあり・なしを比較しました。
+どれがSkillありかを伏せて採点し、回答中の主要な数字の事実確認も行いました。
+
+| 指標 | Skillなし | Skillあり |
 |---|---|---|
-| 初回 | 4ケース | Skillあり **93%**、なし **48%** |
-| 3回目 | 最も難しい3ケース | **96%**（2回目は88%） |
+| 採点基準の合格率 | 49% | **95%** |
+| 有用度（10点満点） | 4.83 | **7.67** |
+| 誤った記述の数 | 6/72 | 5/72 |
+
+- 同じモデル同士で比べると、12組すべてでSkillありが上回りました。
+- Skillありの Haiku は、Skillなしの Opus をわずかに上回りました。
+- 一方、数字の正確さはほとんど変わりませんでした。そのため v0.4.1 で、次の対策を追加しています。
+  - 最初に、日付付きの開示タイムラインを作る
+  - 期限のある情報（ワラントなど）が今も有効か、再確認する
+  - 情報源どうしの数字が食い違うときの扱いを決める
+  - 自分で計算した数値は、検算する
+
+詳細は `evals/benchmark-2026-10-26/` を参照してください。
+
+#### 開発中の改善
+
+| ラウンド | 結果 |
+|---|---|
+| 初回 | Skillあり **93%** / なし 48% |
+| 改善3回目（最も難しい3ケース） | **96%** |
 
 ### インストール
 

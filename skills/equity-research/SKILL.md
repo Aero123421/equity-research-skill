@@ -16,7 +16,7 @@ description: >-
   catalyst, valuation, stock analysis.
 license: Apache-2.0
 metadata:
-  version: "0.4.0"
+  version: "0.4.1"
   markets: "JP, US"
   last_reviewed: "2026-10-26"
 ---
@@ -136,6 +136,18 @@ Establish the clock: today's date, the latest results (period and release
 date), and whether anything relevant happened in the last few days (results,
 pre-announcements, guidance changes, peer results, major macro data). Do this
 early — stale framing is the most common avoidable error.
+
+**Build a dated timeline first** for "why is it moving / why is everyone
+talking about it" questions, and for any small or volatile stock: list the
+company's own disclosures from the last ~30 days (TDnet 適時開示 / 8-K / press
+releases) next to the big price days. Most stories hinge on one or two of these
+disclosures, so reading them early keeps the whole answer anchored to facts.
+
+**Re-check time-limited facts.** Warrants (新株予約権/MSワラント), lock-ups,
+tender offers, buyback programs, contracts and guidance all have status that
+changes. Before relying on one, confirm its current status and date — expired,
+cancelled, exercised, extended or completed — rather than carrying an older
+description forward.
 
 ### Step 3 — Coverage sweep (wide)
 
@@ -305,7 +317,13 @@ then the next catalyst.
 - [ ] Orders vs backlog vs pipeline vs revenue not confused (受注 / 受注残 /
       引き合い)
 - [ ] Per-share data split-adjusted; share count changes considered
-- [ ] Prices and key headline figures cross-checked across sources
+- [ ] Prices and key headline figures cross-checked across sources; when
+      sources conflict, use the primary or majority figure, show the range,
+      and never build a conclusion on a lone outlier
+- [ ] Every number you derived yourself (ratios, multiples, "x times",
+      tranche sizes) shows its inputs and has been recomputed
+- [ ] Time-limited items (warrants, lock-ups, offers, buybacks, contracts)
+      have their current status confirmed
 - [ ] Price moves compared with the index, sector and peers on the same day
       (or the headline says the cause is not yet separated from the market)
 - [ ] At least two confirmed dated next events

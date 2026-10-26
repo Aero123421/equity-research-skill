@@ -1,8 +1,52 @@
 [
-  {"name": "jp-deep-dive-lasertec", "type": "single-stock deep dive (JP)", "prompt": "レーザーテック（6920）って今どうなの？投資判断の材料を詳しく調べて。"},
-  {"name": "us-earnings-tesla", "type": "earnings reaction (US)", "prompt": "How did Tesla's most recent quarterly earnings look, and why did the stock react the way it did?"},
-  {"name": "theme-dc-power", "type": "theme discovery (JP+US)", "prompt": "データセンター向け電力設備で、日本株と米国株の関連銘柄を調べて。どこが本当に恩恵を受けてる？"},
-  {"name": "us-short-smci", "type": "positioning question (US)", "prompt": "What's the short interest situation on Super Micro Computer (SMCI) right now? Is it a squeeze candidate?"},
-  {"name": "quick-jp-margin-fujikura", "type": "quick positioning question (JP)", "prompt": "フジクラ（5803）の信用残ってどうなってる？"},
-  {"name": "us-price-move-nvda", "type": "price-move explanation (US)", "prompt": "Why has Nvidia's stock moved the way it has over the past two weeks?"}
+  {
+    "name": "jp-deep-dive-lasertec",
+    "type": "single-stock deep dive (JP)",
+    "prompt": "レーザーテック（6920）って今どうなの？投資判断の材料を詳しく調べて。"
+  },
+  {
+    "name": "us-earnings-tesla",
+    "type": "earnings reaction (US)",
+    "prompt": "How did Tesla's most recent quarterly earnings look, and why did the stock react the way it did?"
+  },
+  {
+    "name": "theme-dc-power",
+    "type": "theme discovery (JP+US)",
+    "prompt": "データセンター向け電力設備で、日本株と米国株の関連銘柄を調べて。どこが本当に恩恵を受けてる？"
+  },
+  {
+    "name": "us-short-smci",
+    "type": "positioning question (US)",
+    "prompt": "What's the short interest situation on Super Micro Computer (SMCI) right now? Is it a squeeze candidate?"
+  },
+  {
+    "name": "quick-jp-margin-fujikura",
+    "type": "quick positioning question (JP)",
+    "prompt": "フジクラ（5803）の信用残ってどうなってる？"
+  },
+  {
+    "name": "us-price-move-nvda",
+    "type": "price-move explanation (US)",
+    "prompt": "Why has Nvidia's stock moved the way it has over the past two weeks?"
+  },
+  {
+    "name": "jp-datasection",
+    "type": "held-out: hot small cap (JP)",
+    "prompt": "データセクション（3905）ってなんでこんなに話題なの？今後どうなりそうか調べて。"
+  },
+  {
+    "name": "jp-kioxia",
+    "type": "held-out: should-I-buy framing (JP)",
+    "prompt": "キオクシアの株、今から買っても大丈夫？判断材料を調べて。"
+  },
+  {
+    "name": "us-coreweave",
+    "type": "held-out: credit stress (US)",
+    "prompt": "What's going on with CoreWeave? Is the bond selloff a warning sign for the stock?"
+  },
+  {
+    "name": "us-spacex",
+    "type": "held-out: IPO and lock-ups (US)",
+    "prompt": "How has SpaceX stock done since its IPO, and what should I watch for with the lockup expirations?"
+  }
 ]
