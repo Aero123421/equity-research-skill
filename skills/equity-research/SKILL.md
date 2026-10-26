@@ -16,7 +16,7 @@ description: >-
   catalyst, valuation, stock analysis.
 license: Apache-2.0
 metadata:
-  version: "0.3.1"
+  version: "0.4.0"
   markets: "JP, US"
   last_reviewed: "2026-10-26"
 ---
@@ -91,10 +91,10 @@ combined)**:
 
 | Depth | When | Tool-call budget | Answer length |
 |---|---|---|---|
-| Quick | Narrow factual question | ≤ 15 | ~300–600 words (日本語 ~1,000–2,000字) |
-| Standard (default) | Most single-stock, earnings, positioning and price-move questions | ≤ 40 | ~1,000–2,000 words (日本語 ~3,000–6,000字) |
-| Standard-wide | Theme / sector discovery and multi-company comparisons | ≤ 60 | ~1,500–2,500 words (日本語 ~4,000–8,000字) |
-| Deep | User asks for 詳しく/徹底的に/full report, or high stakes | ≤ 80 | up to ~4,000 words (日本語 ~12,000字) |
+| Quick | Narrow factual question | ≤ 30 | ~300–600 words (日本語 ~1,000–2,000字) |
+| Standard (default) | Most single-stock, earnings, positioning and price-move questions | ≤ 80 | ~1,000–2,000 words (日本語 ~3,000–6,000字) |
+| Standard-wide | Theme / sector discovery and multi-company comparisons | ≤ 120 | ~1,500–2,500 words (日本語 ~4,000–8,000字) |
+| Deep | User asks for 詳しく/徹底的に/full report, or high stakes | ≤ 160 | up to ~4,000 words (日本語 ~12,000字) |
 
 Lengths exclude the source list. Tables count; keep them tight. Shorten by
 cutting repetition, never by dropping these:

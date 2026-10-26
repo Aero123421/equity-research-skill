@@ -127,10 +127,10 @@ Short example (fictional company):
 
   | Depth | Search + fetch calls |
   |---|---|
-  | Quick | ≤ 15 |
-  | Standard | ≤ 40 |
-  | Standard-wide (themes) | ≤ 60 |
-  | Deep (詳しく) | ≤ 80 |
+  | Quick | ≤ 30 |
+  | Standard | ≤ 80 |
+  | Standard-wide (themes) | ≤ 120 |
+  | Deep (詳しく) | ≤ 160 |
 
   Each depth also has a length guide, so answers stay usable.
 - **Safety.** Web content is treated as data, never as instructions. The
@@ -257,10 +257,10 @@ is subject to its source's terms.
 
   | 深さ | 検索・取得の回数 |
   |---|---|
-  | Quick | 15回まで |
-  | Standard | 40回まで |
-  | テーマ調査 | 60回まで |
-  | 詳しく | 80回まで |
+  | Quick | 30回まで |
+  | Standard | 80回まで |
+  | テーマ調査 | 120回まで |
+  | 詳しく | 160回まで |
 
 ### 評価
 

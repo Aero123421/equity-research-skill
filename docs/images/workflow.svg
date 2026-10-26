@@ -121,9 +121,9 @@
   <rect x="480" y="340" width="450" height="136" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
   <text class="t bt" x="496" y="366">Depth &amp; hard budget (searches + fetches)</text>
   <g>
-    <text class="t b" x="496" y="392" font-weight="700">Quick</text><text class="t b" x="610" y="392">≤ 15</text><text class="t s" x="670" y="392">narrow question · ~300–600 words</text>
-    <text class="t b" x="496" y="414" font-weight="700">Standard</text><text class="t b" x="610" y="414">≤ 40</text><text class="t s" x="670" y="414">default · ~1,000–2,000 words</text>
-    <text class="t b" x="496" y="436" font-weight="700">Standard-wide</text><text class="t b" x="610" y="436">≤ 60</text><text class="t s" x="670" y="436">themes, comparisons</text>
-    <text class="t b" x="496" y="458" font-weight="700">Deep</text><text class="t b" x="610" y="458">≤ 80</text><text class="t s" x="670" y="458">詳しく / full report · ~4,000 words</text>
+    <text class="t b" x="496" y="392" font-weight="700">Quick</text><text class="t b" x="610" y="392">≤ 30</text><text class="t s" x="670" y="392">narrow question · ~300–600 words</text>
+    <text class="t b" x="496" y="414" font-weight="700">Standard</text><text class="t b" x="610" y="414">≤ 80</text><text class="t s" x="670" y="414">default · ~1,000–2,000 words</text>
+    <text class="t b" x="496" y="436" font-weight="700">Standard-wide</text><text class="t b" x="610" y="436">≤ 120</text><text class="t s" x="670" y="436">themes, comparisons</text>
+    <text class="t b" x="496" y="458" font-weight="700">Deep</text><text class="t b" x="610" y="458">≤ 160</text><text class="t s" x="670" y="458">詳しく / full report · ~4,000 words</text>
   </g>
 </svg>

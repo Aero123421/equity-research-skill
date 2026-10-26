@@ -62,3 +62,11 @@ These were addressed in v0.3.1 instructions but not re-measured:
 
 Market data in the test answers came from live web search on 2026-10-26. The
 answers themselves are not included, because they go stale quickly.
+
+### v0.4.0 note
+
+Tool-call budgets were doubled after these runs: Quick 30, Standard 80,
+Standard-wide 120 and Deep 160. The aim is to leave more room for the
+freshness sweep, market comparison and dated-event checks. The answer-length
+guides are unchanged. The scores above were measured with the earlier
+budgets.
