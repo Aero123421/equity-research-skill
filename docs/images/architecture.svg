@@ -60,11 +60,11 @@
 
   <rect x="286" y="334" width="328" height="62" rx="8" fill="#ffffff" stroke="#5eead4"/>
   <text class="t b" x="300" y="356" font-weight="700">② SKILL.md — loaded when triggered</text>
-  <text class="t s" x="300" y="376">7-step workflow · 8 principles · budgets</text>
-  <text class="t s" x="300" y="391">Normal / Report modes · hygiene checklist</text>
+  <text class="t s" x="300" y="376">compact core (~100 lines): 8 principles</text>
+  <text class="t s" x="300" y="391">7-step summary · budgets · Normal / Report</text>
 
   <rect x="286" y="404" width="328" height="116" rx="8" fill="#ffffff" stroke="#2dd4bf"/>
-  <text class="t b" x="300" y="426" font-weight="700">③ references/ — read on demand (2–4 files)</text>
+  <text class="t b" x="300" y="426" font-weight="700">③ references/ — workflow.md + topic files</text>
   <g>
     <rect x="300" y="436" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="306" y="451">coverage-map</text>
     <rect x="404" y="436" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="410" y="451">output-tmpl</text>

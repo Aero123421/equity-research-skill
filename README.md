@@ -33,10 +33,13 @@ The skill loads in three layers, called *progressive disclosure*:
 
 1. **Metadata.** Name and description with JP/EN trigger words. It is always
    in context, so the agent knows when to use the skill.
-2. **`SKILL.md`.** Loaded when the skill triggers. It holds the workflow,
-   principles, tool-call budgets, the output contract and a hygiene checklist.
-3. **`references/`.** The agent reads only the 2–4 files the task needs:
-   definitions, publication lags and common misreadings for each data type.
+2. **`SKILL.md`.** Loaded when the skill triggers. It is a compact core
+   (~100 lines, ~6 KB) with the principles, a 7-step summary, budgets and the
+   two output modes, so it fits apps that limit skill size.
+3. **`references/`.** The agent reads only the files the task needs:
+   `workflow.md` (full steps + hygiene checklist) for Standard/Deep tasks,
+   `output-template.md` for the answer, and topic files with definitions,
+   publication lags and common misreadings for each data type.
 
 ## Workflow
 
@@ -245,10 +248,11 @@ Just ask:
 
 ```
 skills/equity-research/
-├── SKILL.md                      workflow, principles, budgets, output contract, checklist
+├── SKILL.md                      compact core: principles, 7-step summary, budgets, output modes, file map
 └── references/
+    ├── workflow.md               full 7-step workflow, search tactics, verification, hygiene checklist
     ├── coverage-map.md           minimum check per lens, mandatory lenses by request type, contradiction patterns
-    ├── output-template.md        report templates
+    ├── output-template.md        Normal / Report mode rules and templates
     ├── disclosures-earnings.md   JP/US filings, earnings checklist, accounting differences, red flags
     ├── supply-demand-jp.md       空売り・信用残・貸借/逆日歩・投資部門別・大量保有・TOPIX/日経
     ├── supply-demand-us.md       short interest, borrow, 13F/13D/Form 4, options, flows, index events

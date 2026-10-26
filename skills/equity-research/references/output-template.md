@@ -10,6 +10,75 @@ Two modes (see SKILL.md → Output):
 - **Report mode:** full structured report, used when the user asks for a
   report / 詳しく / 全部, or accepts the offer at the end of a Normal answer.
 
+## Mode rules
+
+There are two output modes. Research depth (Step 1) and output mode are
+independent: a Deep investigation can still be answered in Normal mode.
+
+### Normal mode (default) — rules
+
+Use for ordinary questions. Write a conversational answer, mostly prose with
+light structure, in the user's language:
+
+- **Length:** about 300–800 words (日本語 ~800–2,000字), excluding sources.
+  Quick questions can be shorter.
+- **Answer first**, in 2–4 sentences.
+- **The key facts** behind it (3–6 items), each with its date/period and a
+  short source.
+- **What is easy to miss** — 1–3 points from the wider sweep that change how
+  to read the answer (positioning, expectations vs consensus, a time-limited
+  event, a related company, the strongest counter-argument). This is where
+  the breadth of the research shows; do not drop it.
+- **What to watch / check next** — 1–2 items, including the next confirmed
+  dated event if there is one.
+- A one-line note on important gaps or data limits, if any.
+- End with a one-line offer of the full report (e.g. 「詳しいレポート形式でも
+  まとめられます」). If the user accepts, produce Report mode from the research
+  already done instead of starting over.
+
+Do not show the coverage table, tag lists or scenario tables in Normal mode;
+the research steps still happen, only the presentation is shorter.
+
+### Report mode — rules
+
+Use when the user asks for a report, 詳しく/徹底的に/全部/レポート, a full
+write-up, or accepts the offer above. Use the Report template below:
+
+1. **Answer first** — direct answer to the question.
+2. **Key numbers** — the verified ledger from Step 7 (value, as-of,
+   basis, source, verification status).
+3. **Key findings** — decision-relevant facts with date and source. State
+   each fact once; later sections refer back instead of repeating it.
+4. **Coverage table** — every lens, one line each, with a text status:
+   Checked / Partial / Not found / N/A (in Japanese: 確認済 / 一部 /
+   未取得 / 対象外). Give a reason for Partial, Not found and N/A. Mark
+   lenses unrelated to the question N/A rather than padding them.
+5. **Contradictions & surprises** and how far they were resolved.
+6. **Related companies** — relation type (competitor, customer, supplier,
+   parent, substitute, same-theme-unverified) and the evidence.
+7. **Strongest case against the conclusion** (from Step 5), plus the main
+   supporting points.
+8. **Next dated events** — at least two dates confirmed by sources fetched in
+   this run, each marked confirmed (with source) or estimated. Dates from
+   memory count as estimated.
+9. **Next investigations** — 3–5 prioritized items tagged `verify` /
+   `disconfirm` / `compare` / `fill_gap` / `monitor`, each with why it matters
+   and exactly what to search or read. Include at least one `disconfirm`.
+10. **Data caveats** — lags, secondary data, definitional differences,
+    conflicts between sources, missing data.
+11. **Sources** with titles and dates.
+
+Report length guide (excluding sources): Standard ~1,000–2,000 words
+(日本語 ~3,000–6,000字); themes ~1,500–2,500 words (~4,000–8,000字); Deep up
+to ~4,000 words (~12,000字).
+
+### Both modes — rules
+
+Match the user's language (Japanese question → Japanese answer). For
+positioning questions, the most useful extras are the neighbouring
+positioning data first (信用残 → 貸借倍率/逆日歩 and 空売り残高報告; short
+interest → borrow cost, days to cover and options), then the next catalyst.
+
 ---
 
 ## Normal mode
