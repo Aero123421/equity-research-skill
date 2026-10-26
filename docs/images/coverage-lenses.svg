@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600" role="img" aria-labelledby="title desc">
+  <title id="title">The 14 research lenses</title>
+  <desc id="desc">Fourteen lenses in four groups: company, expectations and price, positioning and ownership, and context. Every answer reports coverage status for each lens. Contradictions between lenses are prioritized.</desc>
+  <defs>
+    <style>
+      .t { font-family: Inter, -apple-system, "Segoe UI", Helvetica, Arial, "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; fill: #1f2937; }
+      .h1 { font-size: 22px; font-weight: 700; }
+      .sub { font-size: 13px; fill: #64748b; }
+      .gt { font-size: 14px; font-weight: 700; }
+      .lt { font-size: 12.5px; font-weight: 700; }
+      .s { font-size: 11px; fill: #475569; }
+      .tag { font-size: 10.5px; font-weight: 700; fill: #ffffff; }
+      .b { font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="600" rx="16" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="959" height="599" rx="16" fill="none" stroke="#e2e8f0"/>
+
+  <text class="t h1" x="30" y="44">14 research lenses</text>
+  <text class="t sub" x="30" y="66">Each answer reports every lens as Checked / Partial / Not found / N/A (確認済 / 一部 / 未取得 / 対象外).</text>
+
+  <!-- Group A: Company -->
+  <rect x="30" y="88" width="216" height="352" rx="12" fill="#eff6ff" stroke="#93c5fd"/>
+  <text class="t gt" x="46" y="114" fill="#1e3a8a">Company</text>
+  <g>
+    <rect x="42" y="126" width="192" height="70" rx="8" fill="#ffffff" stroke="#bfdbfe"/>
+    <rect x="52" y="136" width="28" height="18" rx="4" fill="#2563eb"/><text class="t tag" x="57" y="149">L1</text>
+    <text class="t lt" x="88" y="150">Business &amp; moat</text>
+    <text class="t s" x="52" y="172">segments, customers,</text>
+    <text class="t s" x="52" y="187">suppliers, competitors</text>
+
+    <rect x="42" y="204" width="192" height="70" rx="8" fill="#ffffff" stroke="#bfdbfe"/>
+    <rect x="52" y="214" width="28" height="18" rx="4" fill="#2563eb"/><text class="t tag" x="57" y="227">L2</text>
+    <text class="t lt" x="88" y="228">Results &amp; quality</text>
+    <text class="t s" x="52" y="250">margins, cash conversion,</text>
+    <text class="t s" x="52" y="265">one-offs, SBC, dilution</text>
+
+    <rect x="42" y="282" width="192" height="70" rx="8" fill="#ffffff" stroke="#bfdbfe"/>
+    <rect x="52" y="292" width="28" height="18" rx="4" fill="#2563eb"/><text class="t tag" x="57" y="305">L5</text>
+    <text class="t lt" x="88" y="306">Capital policy</text>
+    <text class="t s" x="52" y="328">buybacks, DOE, PBR plan,</text>
+    <text class="t s" x="52" y="343">政策保有株, parent/subs</text>
+
+    <rect x="42" y="360" width="192" height="70" rx="8" fill="#ffffff" stroke="#bfdbfe"/>
+    <rect x="52" y="370" width="34" height="18" rx="4" fill="#2563eb"/><text class="t tag" x="57" y="383">L14</text>
+    <text class="t lt" x="94" y="384">Risks</text>
+    <text class="t s" x="52" y="406">legal, accounting, KAM/CAM,</text>
+    <text class="t s" x="52" y="421">going concern, geopolitics</text>
+  </g>
+
+  <!-- Group B: Expectations & price -->
+  <rect x="258" y="88" width="216" height="352" rx="12" fill="#f0fdfa" stroke="#5eead4"/>
+  <text class="t gt" x="274" y="114" fill="#134e4a">Expectations &amp; price</text>
+  <g>
+    <rect x="270" y="126" width="192" height="92" rx="8" fill="#ffffff" stroke="#99f6e4"/>
+    <rect x="280" y="136" width="28" height="18" rx="4" fill="#0d9488"/><text class="t tag" x="285" y="149">L3</text>
+    <text class="t lt" x="316" y="150">Expectations</text>
+    <text class="t s" x="280" y="172">会社予想 / guidance vs</text>
+    <text class="t s" x="280" y="187">consensus vs actual</text>
+    <text class="t s" x="280" y="202">revisions, 進捗率</text>
+
+    <rect x="270" y="226" width="192" height="92" rx="8" fill="#ffffff" stroke="#99f6e4"/>
+    <rect x="280" y="236" width="28" height="18" rx="4" fill="#0d9488"/><text class="t tag" x="285" y="249">L4</text>
+    <text class="t lt" x="316" y="250">Valuation</text>
+    <text class="t s" x="280" y="272">P/E, P/B, EV/EBITDA vs</text>
+    <text class="t s" x="280" y="287">history and peers,</text>
+    <text class="t s" x="280" y="302">implied growth, scenarios</text>
+
+    <rect x="270" y="326" width="192" height="104" rx="8" fill="#ffffff" stroke="#99f6e4"/>
+    <rect x="280" y="336" width="34" height="18" rx="4" fill="#0d9488"/><text class="t tag" x="285" y="349">L13</text>
+    <text class="t lt" x="322" y="350">Price &amp; liquidity</text>
+    <text class="t s" x="280" y="372">move vs index, sector and</text>
+    <text class="t s" x="280" y="387">peers on the same day,</text>
+    <text class="t s" x="280" y="402">reaction to news, volume,</text>
+    <text class="t s" x="280" y="417">売買代金, volatility</text>
+  </g>
+
+  <!-- Group C: Positioning & ownership -->
+  <rect x="486" y="88" width="216" height="352" rx="12" fill="#fffbeb" stroke="#fcd34d"/>
+  <text class="t gt" x="502" y="114" fill="#92400e">Positioning &amp; ownership</text>
+  <g>
+    <rect x="498" y="126" width="192" height="172" rx="8" fill="#ffffff" stroke="#fde68a"/>
+    <rect x="508" y="136" width="28" height="18" rx="4" fill="#d97706"/><text class="t tag" x="513" y="149">L6</text>
+    <text class="t lt" x="544" y="150">Supply / demand</text>
+    <text class="t s" x="508" y="174" font-weight="700">JP</text>
+    <text class="t s" x="508" y="190">信用残 (daily) · 信用倍率</text>
+    <text class="t s" x="508" y="205">貸借倍率 · 逆日歩</text>
+    <text class="t s" x="508" y="220">空売り残高報告 · 日々公表</text>
+    <text class="t s" x="508" y="242" font-weight="700">US</text>
+    <text class="t s" x="508" y="258">short interest · days to cover</text>
+    <text class="t s" x="508" y="273">borrow cost · implied move</text>
+    <text class="t s" x="508" y="288">index flows · lock-ups</text>
+
+    <rect x="498" y="306" width="192" height="124" rx="8" fill="#ffffff" stroke="#fde68a"/>
+    <rect x="508" y="316" width="28" height="18" rx="4" fill="#d97706"/><text class="t tag" x="513" y="329">L7</text>
+    <text class="t lt" x="544" y="330">Ownership &amp; insiders</text>
+    <text class="t s" x="508" y="354">大量保有報告 · 大株主</text>
+    <text class="t s" x="508" y="369">activists · 外国人持株比率</text>
+    <text class="t s" x="508" y="391">13F · 13D/G · Form 4</text>
+    <text class="t s" x="508" y="406">(open-market P/S only,</text>
+    <text class="t s" x="508" y="421">10b5-1 flag)</text>
+  </g>
+
+  <!-- Group D: Context -->
+  <rect x="714" y="88" width="216" height="352" rx="12" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text class="t gt" x="730" y="114" fill="#4c1d95">Context</text>
+  <g>
+    <rect x="726" y="124" width="192" height="56" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <rect x="736" y="132" width="28" height="18" rx="4" fill="#7c3aed"/><text class="t tag" x="741" y="145">L8</text>
+    <text class="t lt" x="772" y="146">Catalysts</text>
+    <text class="t s" x="736" y="168">dated events · TOB · index</text>
+
+    <rect x="726" y="186" width="192" height="56" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <rect x="736" y="194" width="28" height="18" rx="4" fill="#7c3aed"/><text class="t tag" x="741" y="207">L9</text>
+    <text class="t lt" x="772" y="208">Related companies</text>
+    <text class="t s" x="736" y="230">typed links + evidence</text>
+
+    <rect x="726" y="248" width="192" height="56" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <rect x="736" y="256" width="34" height="18" rx="4" fill="#7c3aed"/><text class="t tag" x="741" y="269">L10</text>
+    <text class="t lt" x="778" y="270">Macro</text>
+    <text class="t s" x="736" y="292">rates · FX · commodities</text>
+
+    <rect x="726" y="310" width="192" height="56" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <rect x="736" y="318" width="34" height="18" rx="4" fill="#7c3aed"/><text class="t tag" x="741" y="331">L11</text>
+    <text class="t lt" x="778" y="332">Sector KPIs</text>
+    <text class="t s" x="736" y="354">22 sectors' data &amp; KPIs</text>
+
+    <rect x="726" y="372" width="192" height="58" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <rect x="736" y="380" width="34" height="18" rx="4" fill="#7c3aed"/><text class="t tag" x="741" y="393">L12</text>
+    <text class="t lt" x="778" y="394">News &amp; sentiment</text>
+    <text class="t s" x="736" y="416">analysts · short sellers · SNS</text>
+  </g>
+
+  <!-- Contradictions strip -->
+  <rect x="30" y="456" width="900" height="122" rx="12" fill="#fef2f2" stroke="#fca5a5"/>
+  <text class="t gt" x="46" y="482" fill="#991b1b">Contradictions between lenses are the best leads</text>
+  <g>
+    <rect x="46" y="494" width="280" height="70" rx="8" fill="#ffffff" stroke="#fecaca"/>
+    <text class="t b" x="58" y="516" font-weight="700">Strong results, stock falls</text>
+    <text class="t s" x="58" y="536">→ expectations too high? guidance?</text>
+    <text class="t s" x="58" y="552">→ crowded longs, 信用買い残?</text>
+
+    <rect x="340" y="494" width="280" height="70" rx="8" fill="#ffffff" stroke="#fecaca"/>
+    <text class="t b" x="352" y="516" font-weight="700">Sales up, operating cash flow down</text>
+    <text class="t s" x="352" y="536">→ receivables, contract assets,</text>
+    <text class="t s" x="352" y="552">inventory, seasonality</text>
+
+    <rect x="634" y="494" width="280" height="70" rx="8" fill="#ffffff" stroke="#fecaca"/>
+    <text class="t b" x="646" y="516" font-weight="700">Good news, short interest rising</text>
+    <text class="t s" x="646" y="536">→ convertible / merger-arb hedges,</text>
+    <text class="t s" x="646" y="552">offering ahead, or real skeptics?</text>
+  </g>
+</svg>

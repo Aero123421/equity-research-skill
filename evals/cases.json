@@ -1,0 +1,8 @@
+[
+  {"name": "jp-deep-dive-lasertec", "type": "single-stock deep dive (JP)", "prompt": "レーザーテック（6920）って今どうなの？投資判断の材料を詳しく調べて。"},
+  {"name": "us-earnings-tesla", "type": "earnings reaction (US)", "prompt": "How did Tesla's most recent quarterly earnings look, and why did the stock react the way it did?"},
+  {"name": "theme-dc-power", "type": "theme discovery (JP+US)", "prompt": "データセンター向け電力設備で、日本株と米国株の関連銘柄を調べて。どこが本当に恩恵を受けてる？"},
+  {"name": "us-short-smci", "type": "positioning question (US)", "prompt": "What's the short interest situation on Super Micro Computer (SMCI) right now? Is it a squeeze candidate?"},
+  {"name": "quick-jp-margin-fujikura", "type": "quick positioning question (JP)", "prompt": "フジクラ（5803）の信用残ってどうなってる？"},
+  {"name": "us-price-move-nvda", "type": "price-move explanation (US)", "prompt": "Why has Nvidia's stock moved the way it has over the past two weeks?"}
+]

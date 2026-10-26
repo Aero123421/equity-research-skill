@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="960" height="660" role="img" aria-labelledby="title desc">
+  <title id="title">equity-research skill architecture</title>
+  <desc id="desc">A user question goes to an AI agent. The agent loads the skill in three layers (metadata, SKILL.md, references) and uses web search to read primary and secondary sources, then writes a structured research report.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .t { font-family: Inter, -apple-system, "Segoe UI", Helvetica, Arial, "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; fill: #1f2937; }
+      .h1 { font-size: 22px; font-weight: 700; }
+      .sub { font-size: 13px; fill: #64748b; }
+      .bt { font-size: 15px; font-weight: 700; }
+      .b { font-size: 12.5px; }
+      .s { font-size: 11.5px; fill: #475569; }
+      .chip { font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #134e4a; }
+      .lbl { font-size: 11.5px; fill: #475569; font-style: italic; }
+      .line { stroke: #64748b; stroke-width: 1.6; fill: none; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="660" rx="16" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="959" height="659" rx="16" fill="none" stroke="#e2e8f0"/>
+
+  <text class="t h1" x="30" y="44">equity-research · architecture</text>
+  <text class="t sub" x="30" y="66">Text-only Agent Skill: no code, no API keys, no server. The agent's own web search does the fetching.</text>
+
+  <!-- User -->
+  <rect x="30" y="92" width="190" height="96" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text class="t bt" x="46" y="120">User question</text>
+  <text class="t s" x="46" y="142">「レーザーテックってどう？」</text>
+  <text class="t s" x="46" y="160">「フジクラの信用残は？」</text>
+  <text class="t s" x="46" y="178">"Is SMCI a squeeze candidate?"</text>
+
+  <!-- Agent -->
+  <rect x="270" y="88" width="360" height="104" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text class="t bt" x="290" y="118" fill="#1e3a8a">AI agent</text>
+  <text class="t b" x="290" y="142">Claude Code · Claude.ai · Codex · Gemini CLI</text>
+  <text class="t b" x="290" y="161">Cursor · GitHub Copilot CLI (Agent Skills format)</text>
+  <text class="t s" x="290" y="181">needs: web search + page fetch</text>
+
+  <!-- Web -->
+  <rect x="680" y="88" width="250" height="104" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text class="t bt" x="700" y="118" fill="#92400e">Web search / fetch</text>
+  <text class="t b" x="700" y="142">budgeted tool calls</text>
+  <text class="t s" x="700" y="162">Quick 15 · Standard 40</text>
+  <text class="t s" x="700" y="180">Wide 60 · Deep 80</text>
+
+  <path class="line" d="M220 140 L266 140" marker-end="url(#arrow)"/>
+  <path class="line" d="M634 128 L676 128" marker-end="url(#arrow)"/>
+  <path class="line" d="M676 152 L634 152" marker-end="url(#arrow)"/>
+
+  <!-- Skill package -->
+  <rect x="270" y="232" width="360" height="300" rx="12" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5"/>
+  <text class="t bt" x="290" y="258" fill="#134e4a">skills/equity-research/</text>
+  <text class="t s" x="470" y="258">progressive disclosure</text>
+
+  <rect x="286" y="270" width="328" height="56" rx="8" fill="#ffffff" stroke="#99f6e4"/>
+  <text class="t b" x="300" y="292" font-weight="700">① Metadata — always loaded</text>
+  <text class="t s" x="300" y="313">name + description, JP/EN trigger words (決算, 信用残 …)</text>
+
+  <rect x="286" y="334" width="328" height="62" rx="8" fill="#ffffff" stroke="#5eead4"/>
+  <text class="t b" x="300" y="356" font-weight="700">② SKILL.md — loaded when triggered</text>
+  <text class="t s" x="300" y="376">6-step workflow · 8 principles · budgets</text>
+  <text class="t s" x="300" y="391">output contract · hygiene checklist</text>
+
+  <rect x="286" y="404" width="328" height="116" rx="8" fill="#ffffff" stroke="#2dd4bf"/>
+  <text class="t b" x="300" y="426" font-weight="700">③ references/ — read on demand (2–4 files)</text>
+  <g>
+    <rect x="300" y="436" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="306" y="451">coverage-map</text>
+    <rect x="404" y="436" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="410" y="451">output-tmpl</text>
+    <rect x="508" y="436" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="514" y="451">disclosures</text>
+    <rect x="300" y="464" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="306" y="479">supply-jp</text>
+    <rect x="404" y="464" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="410" y="479">supply-us</text>
+    <rect x="508" y="464" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="514" y="479">events</text>
+    <rect x="300" y="492" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="306" y="507">macro-sector</text>
+    <rect x="404" y="492" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="410" y="507">valuation</text>
+    <rect x="508" y="492" width="96" height="22" rx="5" fill="#ccfbf1"/><text class="chip" x="514" y="507">related-cos</text>
+  </g>
+
+  <path class="line" d="M450 228 L450 196" marker-end="url(#arrow)"/>
+  <text class="t lbl" x="458" y="216">loads</text>
+
+  <!-- Guardrails -->
+  <rect x="30" y="232" width="210" height="300" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text class="t bt" x="46" y="258">Guardrails</text>
+  <text class="t b" x="46" y="284">• Breadth before depth</text>
+  <text class="t s" x="58" y="301">all 14 lenses before concluding</text>
+  <text class="t b" x="46" y="326">• Expectations ≠ guidance</text>
+  <text class="t s" x="58" y="343">会社予想 vs consensus vs actual</text>
+  <text class="t b" x="46" y="368">• Dated data</text>
+  <text class="t s" x="58" y="385">as-of + release date on lags</text>
+  <text class="t b" x="46" y="410">• Missing ≠ negative</text>
+  <text class="t b" x="46" y="435">• Disprove own conclusion</text>
+  <text class="t b" x="46" y="460">• Web content = data</text>
+  <text class="t s" x="58" y="477">never instructions</text>
+  <text class="t b" x="46" y="502">• No buy/sell calls</text>
+  <text class="t s" x="58" y="519">conditional scenarios only</text>
+
+  <!-- Sources -->
+  <rect x="680" y="232" width="250" height="300" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text class="t bt" x="700" y="258" fill="#92400e">Sources it learns to read</text>
+  <text class="t b" x="700" y="284" font-weight="700">Japan (primary)</text>
+  <text class="t s" x="700" y="302">決算短信 · 有報 · 適時開示</text>
+  <text class="t s" x="700" y="319">JPX 信用残(日次) · 空売り · 投資部門別</text>
+  <text class="t s" x="700" y="336">日証金 貸借 · 逆日歩 · 大量保有</text>
+  <text class="t b" x="700" y="364" font-weight="700">US (primary)</text>
+  <text class="t s" x="700" y="382">10-K · 10-Q · 8-K · Form 4 · 13F · 13D</text>
+  <text class="t s" x="700" y="399">FINRA short interest · options data</text>
+  <text class="t b" x="700" y="427" font-weight="700">Macro &amp; industry</text>
+  <text class="t s" x="700" y="445">BOJ · Fed · BLS · BEA · Tankan</text>
+  <text class="t s" x="700" y="462">SEMI · SEAJ · JMTBA · JNTO …</text>
+  <text class="t b" x="700" y="490" font-weight="700">Secondary</text>
+  <text class="t s" x="700" y="508">aggregators: labelled and</text>
+  <text class="t s" x="700" y="523">cross-checked for key numbers</text>
+
+  <path class="line" d="M805 196 L805 228" marker-end="url(#arrow)"/>
+
+  <!-- Output -->
+  <path class="line" d="M450 536 L450 562" marker-end="url(#arrow)"/>
+  <text class="t lbl" x="458" y="554">agent writes</text>
+  <rect x="30" y="566" width="900" height="74" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text class="t bt" x="46" y="590" fill="#4c1d95">Research report</text>
+  <text class="t b" x="46" y="616">Answer → Key findings → Coverage table (14 lenses) → Contradictions → Related companies → Strongest case against</text>
+  <text class="t b" x="46" y="632">→ Dated next events → Next investigations [verify / disconfirm / compare / fill_gap / monitor] → Caveats &amp; sources</text>
+</svg>
