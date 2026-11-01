@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="960" height="660" role="img" aria-labelledby="title desc">
   <title id="title">equity-research skill architecture</title>
-  <desc id="desc">A user question goes to an AI agent. The agent loads the skill in three layers (metadata, SKILL.md, references) and uses web search to read primary and secondary sources, then writes a structured research report.</desc>
+  <desc id="desc">An AI agent loads metadata, SKILL.md and relevant references. It scopes research to the question, checks web sources or supplied documents, and answers concisely or in the requested report format.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
@@ -22,7 +22,7 @@
   <rect x="0.5" y="0.5" width="959" height="659" rx="16" fill="none" stroke="#e2e8f0"/>
 
   <text class="t h1" x="30" y="44">equity-research · architecture</text>
-  <text class="t sub" x="30" y="66">Text-only Agent Skill: no code, no API keys, no server. The agent's own web search does the fetching.</text>
+  <text class="t sub" x="30" y="66">Text-only Agent Skill: no code, API keys or state folders. Use the agent's web tools or supplied documents.</text>
 
   <!-- User -->
   <rect x="30" y="92" width="190" height="96" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
@@ -36,12 +36,12 @@
   <text class="t bt" x="290" y="118" fill="#1e3a8a">AI agent</text>
   <text class="t b" x="290" y="142">Claude Code · Claude.ai · Codex · Gemini CLI</text>
   <text class="t b" x="290" y="161">Cursor · GitHub Copilot CLI (Agent Skills format)</text>
-  <text class="t s" x="290" y="181">needs: web search + page fetch</text>
+  <text class="t s" x="290" y="181">live facts: web search + page fetch</text>
 
   <!-- Web -->
   <rect x="680" y="88" width="250" height="104" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
   <text class="t bt" x="700" y="118" fill="#92400e">Web search / fetch</text>
-  <text class="t b" x="700" y="142">budgeted tool calls</text>
+  <text class="t b" x="700" y="142">shared query + page ceilings</text>
   <text class="t s" x="700" y="162">Quick 30 · Standard 80</text>
   <text class="t s" x="700" y="180">Wide 120 · Deep 160</text>
 
@@ -60,7 +60,7 @@
 
   <rect x="286" y="334" width="328" height="62" rx="8" fill="#ffffff" stroke="#5eead4"/>
   <text class="t b" x="300" y="356" font-weight="700">② SKILL.md — loaded when triggered</text>
-  <text class="t s" x="300" y="376">compact core (~100 lines): 8 principles</text>
+  <text class="t s" x="300" y="376">compact core: routing + evidence rules</text>
   <text class="t s" x="300" y="391">7-step summary · budgets · Normal / Report</text>
 
   <rect x="286" y="404" width="328" height="116" rx="8" fill="#ffffff" stroke="#2dd4bf"/>
@@ -83,8 +83,8 @@
   <!-- Guardrails -->
   <rect x="30" y="232" width="210" height="300" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
   <text class="t bt" x="46" y="258">Guardrails</text>
-  <text class="t b" x="46" y="284">• Breadth before depth</text>
-  <text class="t s" x="58" y="301">all 14 lenses before concluding</text>
+  <text class="t b" x="46" y="284">• Scope before depth</text>
+  <text class="t s" x="58" y="301">relevant + adjacent evidence</text>
   <text class="t b" x="46" y="326">• Expectations ≠ guidance</text>
   <text class="t s" x="58" y="343">会社予想 vs consensus vs actual</text>
   <text class="t b" x="46" y="368">• Dated data</text>
@@ -120,6 +120,6 @@
   <text class="t lbl" x="458" y="554">agent writes</text>
   <rect x="30" y="566" width="900" height="74" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
   <text class="t bt" x="46" y="590" fill="#4c1d95">Answer — Normal mode (default) or Report mode (on request)</text>
-  <text class="t b" x="46" y="616">Normal: conclusion → key facts with dates → easy-to-miss points → what to watch → offer full report</text>
-  <text class="t b" x="46" y="632">Report: answer → verified key numbers → coverage (14 lenses) → contradictions → counter-case → dated events → next steps</text>
+  <text class="t b" x="46" y="616">Normal: direct answer → dated evidence → material caveats. Follow the user's requested length.</text>
+  <text class="t b" x="46" y="632">Report: relevant findings → verified numbers → coverage and gaps → counter-evidence → confirmed events</text>
 </svg>

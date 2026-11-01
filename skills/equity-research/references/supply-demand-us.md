@@ -99,12 +99,21 @@ not a positioning signal.
 ### Form 13F
 - Quarterly long positions in 13(f) securities by managers with ≥$100M;
   due 45 days after quarter-end.
-- **Pitfalls:** excludes short positions; options reported as notional of
-  the underlying (a put is not a long); 45-day to ~2.5-month staleness;
-  confidential treatment can delay some positions; holder counts double count
-  sub-advisers; non-US institutions largely missing.
+- Foreign managers also file when they meet the reporting threshold and use
+  US interstate-commerce means in their business; nationality alone is not
+  an exclusion.
+- **Pitfalls:** covers the 13(f) securities universe, not a manager's entire
+  portfolio. Excludes short stock and written options; reported put/call
+  holdings use underlying-security fields, not option premium value or net
+  stock exposure. Confidential treatment and permitted small-position
+  omissions create gaps. Date the quarter-end snapshot and filing; deduplicate
+  shared-discretion reports rather than summing filer totals.
 - Use for: concentration, crowding among hedge funds, trend in ownership —
   not for current positioning.
+
+Source for reporting scope and these limitations: [SEC Form 13F FAQ,
+questions 2, 4, 7, 39–44 and shared-discretion guidance](https://www.sec.gov/rules-regulations/staff-guidance/frequently-asked-questions-about-form-13f)
+(checked 2026-10-31; this does not refresh the rule-status board above).
 
 ### Schedule 13D / 13G
 13D = activist/control intent; 13G = passive/QII. A new 13D from an activist
@@ -163,11 +172,15 @@ signal. "Group" formation and cash-settled swaps are interpretive grey areas.
 | Put/call ratio | Put ÷ call volume or OI; Cboe publishes equity, index, total | High equity P/C = fear/hedging (contrarian bullish at extremes); low = complacency | Index P/C is mostly hedging and structurally higher; sold puts count as volume; baselines shifted with retail/0DTE |
 | Implied volatility, IV rank/percentile | Volatility priced by options; rank vs 52-week range | High IV before an event = big move priced, no direction | Rises mechanically into earnings; vendor conventions |
 | Skew | OTM put IV vs call IV | Steep put skew = downside hedging demand; call skew = speculative upside demand | Definition-dependent; rises when spot falls; overwriting distorts |
-| Implied earnings move | ≈ ATM straddle (expiring just after the report) ÷ spot | Compare to the stock's historical earnings moves; rich vs cheap | Straddle overstates one standard deviation (~0.8σ); other days in expiry |
+| Straddle-implied earnings move | ≈ (ATM call + put premiums at the same strike/expiry just after the report) ÷ spot | Compare to historical moves over a comparable window | Not automatically a one-standard-deviation interval; includes other days before expiry. State method, strike, expiry and quote time |
 | Max pain | Strike minimizing option holders' payoff | Pinning hypothesis — weak evidence | Treat as curiosity, not signal |
 | Dealer gamma (GEX) | Estimated dealer net gamma from OI with assumed signs | Positive gamma dampens moves; negative amplifies | Sign assumption unobservable; vendors disagree; 0DTE invisible; hypothesis only |
 | Unusual options activity | Volume ≫ OI or normal | Possible informed positioning before events | Direction ambiguous (buy vs sell, spreads, hedges); survivorship bias |
 | VIX, term structure, SKEW, VVIX | Market-wide implied vol and tail pricing | Backwardation = acute stress; contango = calm | VIX not directional; SKEW not a timing tool |
+
+For the straddle definition and expiry breakevens (strike ± combined
+premiums), see [OCC/OIC: Long Straddle](https://www.optionseducation.org/strategies/all-strategies/long-straddle)
+(checked 2026-10-31). A breakeven distance is not a probability bound.
 
 Expirations: monthly options on the third Friday (holiday shifts occur);
 quarterly expirations coincide with index futures expiry and S&P/Nasdaq

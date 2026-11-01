@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" role="img" aria-labelledby="title desc">
   <title id="title">equity-research workflow</title>
-  <desc id="desc">Six steps: frame and budget, pin the security and clock, wide coverage sweep, go deep on leads, disconfirm the conclusion, synthesize and check consistency. Includes stop rules and depth budgets.</desc>
+  <desc id="desc">Workflow overview: scope and budget, pin the security and clock, check relevant lenses, investigate material leads, test the conclusion, and verify before answering. Research ceilings are shared across agents and are not targets.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
@@ -23,7 +23,7 @@
   <rect x="0.5" y="0.5" width="959" height="499" rx="16" fill="none" stroke="#e2e8f0"/>
 
   <text class="t h1" x="30" y="44">Research workflow</text>
-  <text class="t sub" x="30" y="66">Sweep wide, dig where evidence is surprising, try to prove yourself wrong, verify the numbers — then answer short or as a report.</text>
+  <text class="t sub" x="30" y="66">Scope the question, investigate material evidence, test the conclusion and verify figures. Answer in the requested format.</text>
 
   <!-- Step cards -->
   <g>
@@ -31,12 +31,12 @@
     <rect x="44" y="90" width="112" height="4" rx="2" fill="#2563eb"/>
     <circle cx="52" cy="120" r="12" fill="#2563eb"/><text class="t num" x="48" y="124">1</text>
     <text class="t st" x="70" y="118">Frame &amp;</text><text class="t st" x="70" y="135">budget</text>
-    <text class="t b" x="42" y="164">8 request types</text>
-    <text class="t s" x="42" y="182">deep dive · earnings</text>
-    <text class="t s" x="42" y="198">price move · event</text>
-    <text class="t s" x="42" y="214">theme · comparison</text>
-    <text class="t s" x="42" y="230">macro · positioning</text>
-    <text class="t b" x="42" y="254">→ depth + call budget</text>
+    <text class="t b" x="42" y="164">Focused or broad?</text>
+    <text class="t s" x="42" y="182">facts · definitions</text>
+    <text class="t s" x="42" y="198">updates · analysis</text>
+    <text class="t s" x="42" y="214">themes · comparisons</text>
+    <text class="t s" x="42" y="230">requested depth</text>
+    <text class="t b" x="42" y="254">→ shared ceiling</text>
   </g>
   <g>
     <rect x="182" y="90" width="140" height="180" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
@@ -46,20 +46,20 @@
     <text class="t b" x="194" y="164">code / ticker, market</text>
     <text class="t s" x="194" y="182">FY end · GAAP basis</text>
     <text class="t s" x="194" y="198">splits, listed subs</text>
-    <text class="t b" x="194" y="222">latest results date</text>
-    <text class="t s" x="194" y="240">what happened in the</text>
-    <text class="t s" x="194" y="256">last few days?</text>
+    <text class="t b" x="194" y="222">requested cutoff</text>
+    <text class="t s" x="194" y="240">as-of + release date</text>
+    <text class="t s" x="194" y="256">refresh changed facts</text>
   </g>
   <g>
     <rect x="334" y="90" width="140" height="180" rx="12" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5"/>
     <rect x="348" y="90" width="112" height="4" rx="2" fill="#0d9488"/>
     <circle cx="356" cy="120" r="12" fill="#0d9488"/><text class="t num" x="352" y="124">3</text>
-    <text class="t st" x="374" y="118">Wide</text><text class="t st" x="374" y="135">sweep</text>
-    <text class="t b" x="346" y="164">14 lenses, minimum</text>
-    <text class="t b" x="346" y="180">check for each</text>
-    <text class="t s" x="346" y="202">freshness sweep</text>
-    <text class="t s" x="346" y="218">before "not found"</text>
-    <text class="t s" x="346" y="240">market check gate:</text>
+    <text class="t st" x="374" y="118">Scope</text><text class="t st" x="374" y="135">the sweep</text>
+    <text class="t b" x="346" y="164">14 possible lenses</text>
+    <text class="t b" x="346" y="180">check what matters</text>
+    <text class="t s" x="346" y="202">focused question:</text>
+    <text class="t s" x="346" y="218">relevant + adjacent</text>
+    <text class="t s" x="346" y="240">for price moves:</text>
     <text class="t s" x="346" y="256">index · sector · peers</text>
   </g>
   <g>
@@ -83,8 +83,8 @@
     <text class="t b" x="650" y="180">in one sentence</text>
     <text class="t s" x="650" y="202">search for the best</text>
     <text class="t s" x="650" y="218">evidence it is wrong</text>
-    <text class="t s" x="650" y="240">check positioning,</text>
-    <text class="t s" x="650" y="256">consensus, a peer</text>
+    <text class="t s" x="650" y="240">test alternatives</text>
+    <text class="t s" x="650" y="256">where relevant</text>
   </g>
   <g>
     <rect x="790" y="90" width="140" height="180" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
@@ -112,17 +112,17 @@
   <!-- Stop rules -->
   <rect x="30" y="340" width="430" height="136" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
   <text class="t bt" x="46" y="366">Stop rules</text>
-  <text class="t b" x="46" y="392">• Two searches in a row add nothing new → stop the lead</text>
-  <text class="t b" x="46" y="414">• Needs paid data → record the gap, suggest how to get it</text>
+  <text class="t b" x="46" y="392">• Sufficient evidence → answer; the ceiling is not a target</text>
+  <text class="t b" x="46" y="414">• Two searches add nothing / paid data → record the gap</text>
   <text class="t b" x="46" y="436">• Budget reached → write up, open items go to "Next"</text>
   <text class="t b" x="46" y="458">• Site fails → one alternative URL, then another source</text>
 
   <!-- Budgets -->
   <rect x="480" y="340" width="450" height="136" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text class="t bt" x="496" y="366">Research depth &amp; budget (searches + fetches)</text>
+  <text class="t bt" x="496" y="366">Shared ceilings (queries + fetched pages)</text>
   <g>
-    <text class="t b" x="496" y="392" font-weight="700">Quick</text><text class="t b" x="610" y="392">≤ 30</text><text class="t s" x="670" y="392">narrow factual question</text>
-    <text class="t b" x="496" y="414" font-weight="700">Standard</text><text class="t b" x="610" y="414">≤ 80</text><text class="t s" x="670" y="414">default</text>
+    <text class="t b" x="496" y="392" font-weight="700">Quick</text><text class="t b" x="610" y="392">≤ 30</text><text class="t s" x="670" y="392">facts, definitions, updates</text>
+    <text class="t b" x="496" y="414" font-weight="700">Standard</text><text class="t b" x="610" y="414">≤ 80</text><text class="t s" x="670" y="414">broader analysis</text>
     <text class="t b" x="496" y="436" font-weight="700">Standard-wide</text><text class="t b" x="610" y="436">≤ 120</text><text class="t s" x="670" y="436">themes, comparisons</text>
     <text class="t b" x="496" y="458" font-weight="700">Deep</text><text class="t b" x="610" y="458">≤ 160</text><text class="t s" x="670" y="458">詳しく / thorough research</text>
   </g>

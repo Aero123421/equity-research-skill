@@ -1,7 +1,10 @@
 # Coverage map
 
-Use this file to make sure the research looked in every direction that could
-change the conclusion. It has four parts:
+Use this file to select the perspectives that could change the answer. For a
+broad company investigation, assess all 14 for relevance; for a focused
+analysis, use the matrix below. A one-fact question or narrow follow-up uses
+only the requested evidence and material context, not the entire matrix.
+This file has four parts:
 
 1. Minimum check per lens
 2. Mandatory lenses by request type
@@ -12,8 +15,11 @@ change the conclusion. It has four parts:
 
 ## 1. Minimum check per lens
 
-"Minimum check" = the least you must establish before marking a lens ✅.
-If you cannot establish it, mark ⚠️ or ❌ and say why.
+"Minimum check" describes a substantive assessment of a relevant lens in a
+broad investigation. Scale it to the question; it is not a requirement to
+retrieve every metric in the row. Use the status definitions in
+[output-template.md](output-template.md): Checked / Partial / Not found /
+Not checked / N/A. Missing data is not evidence of absence.
 
 | Lens | Minimum check | Typical deeper work |
 |---|---|---|
@@ -36,8 +42,12 @@ If you cannot establish it, mark ⚠️ or ❌ and say why.
 
 ## 2. Mandatory lenses by request type
 
-M = mandatory minimum check, ○ = check if quick or relevant, – = usually skip
-(still list it in the coverage table as ➖ with a reason).
+Use this matrix for substantive analysis, not a one-fact Quick request or
+narrow update. M = core to this analysis, ○ = check when it could change the
+answer, – = usually outside scope. Assess relevance before fetching data;
+do not manufacture content where evidence is unavailable. Deep research
+deepens the selected scope; only a full company investigation uses the
+whole Deep dive column. A Report format alone does not expand scope.
 
 | Lens | Deep dive | Earnings | Price move | Event | Theme | Comparison | Macro impact | Positioning Q |
 |---|---|---|---|---|---|---|---|---|
@@ -67,10 +77,12 @@ Notes:
   merely *associated* with the theme in media lists. Include the less obvious
   layers of the value chain (materials, equipment, components, power,
   cooling, logistics, services) and potential losers.
-- **Positioning questions:** always give the precise definition, the as-of
-  date and the release date, and at least one complementary indicator (e.g.
-  short interest + borrow cost + days to cover; 信用買い残 + 信用倍率 +
-  評価損益率 + 出来高).
+- **Positioning questions:** give the precise definition, series scope,
+  as-of date and release date. For an interpretation or squeeze thesis, add
+  complementary evidence when available (e.g. short interest, borrow cost
+  and days to cover; 信用残 and stock-specific price/volume). A calculation
+  or definition alone need not trigger that analysis. Identify market-wide
+  measures as context, never as the individual stock's position.
 
 ---
 

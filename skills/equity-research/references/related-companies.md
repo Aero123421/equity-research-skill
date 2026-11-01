@@ -51,8 +51,12 @@ whether the link is current (customer lists change).
 
 ## 3. Evidence standards
 
-- **Verified:** stated in a filing, official release, contract, or by the
-  counterparty. Cite it with date.
+- **Documented:** stated in a filing, official release or contract. Cite the
+  document, section and date; preserve attribution ("the company states").
+  A primary source verifies what was disclosed, not every claimed outcome.
+- **Corroborated:** supported by the counterparty or independent evidence.
+  Name the additional source and the exact claim it supports; repetitions
+  of the same announcement are not independent confirmation.
 - **Reported:** credible media/industry report; name the source and date.
 - **Inferred:** logical but unconfirmed (same industry, plausible supplier).
   Label as a hypothesis and put verification into "Next investigations".
@@ -60,6 +64,22 @@ whether the link is current (customer lists change).
   customer undisclosed (≈X% of sales)" as a concentration risk instead.
 - Revenue exposure matters: a supplier for which the customer is 40% of sales
   is affected very differently from one at 2%.
+
+For material projects or transactions, record the **stage actually evidenced**:
+plan/discussion, LOI, binding contract (including conditions), delivery,
+commissioning/operation, or recognized revenue. Track financing commitment
+and payment/receipt separately; these are not a mandatory linear sequence.
+A signed contract does not prove shipment, operation or collection. A payment
+deadline is not receipt confirmation, and facility capacity is not installed
+or operating capacity. Retain "not confirmed" when the next stage lacks
+evidence; absence of an update is not proof of failure.
+
+Use public or otherwise authorized evidence for OSINT. For photos, video or
+satellite imagery, preserve the original source and distinguish publication
+date from capture date (unknown if unverified). Describe visible observations
+separately from inference: resemblance alone cannot establish the site,
+ownership, hardware model/count or current operation. Do not invent access to
+tracking records, private sensors or other unavailable evidence.
 
 ## 4. Read-across: what to check in each related company
 

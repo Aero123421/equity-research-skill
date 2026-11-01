@@ -62,9 +62,16 @@ Contents:
   current price implies. A simple sanity check: at a given P/E and required
   return, what earnings growth is needed?
 - **Scenario table:** bear/base/bull with explicit EPS (or FCF) and multiple
-  assumptions, plus what must be true for each. Return = (EPS change) ×
-  (multiple change) + dividends. Show that multiple compression can offset
-  earnings growth.
+  assumptions, plus what must be true for each. For positive EPS, compute
+  `P0 = EPS0 × PE0` and `P1 = EPS1 × PE1` on the same per-share basis.
+  Holding-period total return is `(P1 − P0 + D) / P0`, where `D` is cash
+  dividends per share over that period (before costs/taxes, no reinvestment).
+  Equivalently, use `(1 + EPS growth) × (1 + P/E growth) − 1 + D/P0`;
+  do not multiply the two growth rates alone. Example: EPS 100 → 120 and
+  P/E 10 → 11 imply price 1,000 → 1,320: +32% before dividends, or +34%
+  with dividends of 20 per share. State the horizon; use another metric
+  from §1 when earnings are non-positive. Show that multiple compression
+  can offset earnings growth.
 - **Rates sensitivity:** long-duration (high-growth) equities are more
   sensitive to discount-rate changes; state this as a sensitivity, not a
   prediction.
