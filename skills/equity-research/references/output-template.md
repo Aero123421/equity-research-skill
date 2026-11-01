@@ -1,223 +1,183 @@
 # Output templates
 
-Write in the user's language (Japanese question → Japanese answer; keep
-tickers and form names as they are). State each fact once and refer back to
-it.
+Use the user's language and requested length. Answer the question first.
+State each material fact once and place its source beside it. These are
+optional shapes, not mandatory section or item counts.
 
-Two modes (see SKILL.md → Output):
-- **Normal mode (default):** conversational, short. The research is just as
-  wide; only the presentation is compact.
-- **Report mode:** full structured report, used when the user asks for a
-  report / 詳しく / 全部, or accepts the offer at the end of a Normal answer.
+Contents:
+1. Choose the format
+2. Normal answers and follow-ups
+3. Reports and coverage statuses
+4. Report template
+5. Citations, dates and gaps
 
-## Mode rules
+## 1. Choose the format
 
-There are two output modes. Research depth (Step 1) and output mode are
-independent: a Deep investigation can still be answered in Normal mode.
+- **Normal (default):** conversational, with as much detail as requested.
+  A single fact may need only a few sentences; an ordinary analysis may use
+  ~300–800 words (日本語 ~800–2,000字). Do not pad to reach a length guide.
+- **Report:** use when the user requests a structured/full report or accepts
+  an earlier report offer. “詳しく / deeply” alone changes research depth,
+  not output format. An explicit “three bullets” or “briefly” takes precedence.
 
-### Normal mode (default) — rules
+Depth and format are independent. Do not hide material uncertainty to keep
+an answer short; remove repetition and irrelevant background instead.
+Do not append a standing offer for a longer report to every answer.
 
-Use for ordinary questions. Write a conversational answer, mostly prose with
-light structure, in the user's language:
+## 2. Normal answers and follow-ups
 
-- **Length:** about 300–800 words (日本語 ~800–2,000字), excluding sources.
-  Quick questions can be shorter.
-- **Answer first**, in 2–4 sentences.
-- **The key facts** behind it (3–6 items), each with its date/period and a
-  short source.
-- **What is easy to miss** — 1–3 points from the wider sweep that change how
-  to read the answer (positioning, expectations vs consensus, a time-limited
-  event, a related company, the strongest counter-argument). This is where
-  the breadth of the research shows; do not drop it.
-- **What to watch / check next** — 1–2 items, including the next confirmed
-  dated event if there is one.
-- A one-line note on important gaps or data limits, if any.
-- End with a one-line offer of the full report (e.g. 「詳しいレポート形式でも
-  まとめられます」). If the user accepts, produce Report mode from the research
-  already done instead of starting over.
+For a fact, give the answer, its definition/date/source and any caveat that
+changes the meaning. A broad analysis can add key findings, an easy-to-miss
+point or counter-evidence, and the next useful check. Add sections or small
+tables only when they make the answer clearer.
 
-Do not show the coverage table, tag lists or scenario tables in Normal mode;
-the research steps still happen, only the presentation is shorter.
+For a **follow-up**, lead with what changed since the stated baseline, what
+that changes in the conclusion and what remains unconfirmed. Reuse supported
+background; refresh changing facts. If the baseline is unavailable, say you
+can provide a current snapshot but cannot establish the delta.
 
-### Report mode — rules
+For a **source-limited answer**, identify the provided evidence and cut-off.
+Do not call it a live or latest check. Avoid repeating this caveat in every
+paragraph.
 
-Use when the user asks for a report, 詳しく/徹底的に/全部/レポート, a full
-write-up, or accepts the offer above. Use the Report template below:
+### Example: one factual calculation
 
-1. **Answer first** — direct answer to the question.
-2. **Key numbers** — the verified ledger from Step 7 (value, as-of,
-   basis, source, verification status).
-3. **Key findings** — decision-relevant facts with date and source. State
-   each fact once; later sections refer back instead of repeating it.
-4. **Coverage table** — every lens, one line each, with a text status:
-   Checked / Partial / Not found / N/A (in Japanese: 確認済 / 一部 /
-   未取得 / 対象外). Give a reason for Partial, Not found and N/A. Mark
-   lenses unrelated to the question N/A rather than padding them.
-5. **Contradictions & surprises** and how far they were resolved.
-6. **Related companies** — relation type (competitor, customer, supplier,
-   parent, substitute, same-theme-unverified) and the evidence.
-7. **Strongest case against the conclusion** (from Step 5), plus the main
-   supporting points.
-8. **Next dated events** — at least two dates confirmed by sources fetched in
-   this run, each marked confirmed (with source) or estimated. Dates from
-   memory count as estimated.
-9. **Next investigations** — 3–5 prioritized items tagged `verify` /
-   `disconfirm` / `compare` / `fill_gap` / `monitor`, each with why it matters
-   and exactly what to search or read. Include at least one `disconfirm`.
-10. **Data caveats** — lags, secondary data, definitional differences,
-    conflicts between sources, missing data.
-11. **Sources** with titles and dates.
+All company names, dates and figures below are fictional supplied inputs.
+No live source retrieval is implied.
 
-Report length guide (excluding sources): Standard ~1,000–2,000 words
-(日本語 ~3,000–6,000字); themes ~1,500–2,500 words (~4,000–8,000字); Deep up
-to ~4,000 words (~12,000字).
+User: 「この表の信用倍率だけ教えて」
 
-### Both modes — rules
+Provided table A: A社; 信用買い残120万株・信用売り残60万株;
+対象日2026-10-23、公表日2026-10-26.
 
-Match the user's language (Japanese question → Japanese answer). For
-positioning questions, the most useful extras are the neighbouring
-positioning data first (信用残 → 貸借倍率/逆日歩 and 空売り残高報告; short
-interest → borrow cost, days to cover and options), then the next catalyst.
+> 表の信用倍率は **2.0倍** です（120万株 ÷ 60万株）。対象日は10月23日、
+> 公表日は10月26日です。これは信用買い残と売り残の比率で、日証金の貸借倍率とは
+> 別の指標です。この倍率だけで株価の上げ下げは判断できません。
+> 出典：提供資料「表A」。
 
----
+Do not add an earnings calendar, 14-lens table or unrelated company analysis
+to this answer. For an analytical squeeze question, add the relevant
+positioning and catalyst evidence instead.
 
-## Normal mode
+### Example: uncertainty in a price-move answer
 
-Mostly prose, light structure. About 300–800 words (日本語 ~800–2,000字),
-excluding sources.
+When the inputs show rising prices, a low margin ratio and declining short
+balances, write:
 
-```markdown
-<Answer in 2–4 sentences: the conclusion, the main reason, the main caveat.>
+> 買い戻しが寄与した可能性はありますが、この需給データだけでは上昇への寄与の
+> 大きさは特定できません。
 
-**ポイント / Key facts**
-- <fact with number + period/as-of date> (<short source>)
-- <fact> (<source>)
-- <fact> (<source>)
+Identify the disclosure and market/peer comparison separately. Do not promote
+a possible driver to “most of the move” without evidence of that contribution.
 
-**見落としやすい点 / Easy to miss**
-<1–3 short points from the wide sweep that change how to read the answer:
-positioning, expectations vs consensus, a time-limited event, a related
-company, or the strongest counter-argument.>
+## 3. Reports and coverage statuses
 
-**次に見るところ / What to watch**
-<1–2 items, including the next confirmed dated event if there is one.>
+Select sections that help answer the request. For a comprehensive company
+report, show the 14-lens assessment compactly. For a focused report, state the
+scope and show the relevant lenses; do not add unrelated sections for symmetry.
 
-<Optional one line on important data gaps or limits.>
+Use the same status meanings in working notes and reports:
 
-<One-line offer: 「詳しいレポート形式でもまとめられます」 / "Want the full
-report?">
+| Status | Japanese | Meaning |
+|---|---|---|
+| Checked | 確認済 | Relevant evidence was assessed; cite what supports the finding |
+| Partial | 一部 | Some evidence was assessed, but a material part is unresolved |
+| Not found | 未取得 | A reasonable search found no usable evidence; state sources/scope or access limit |
+| Not checked | 未確認 | The assessment was not performed; say why, e.g. budget or unavailable tools |
+| N/A | 対象外 | The lens is genuinely irrelevant to this question; explain briefly |
 
-Sources: <short list, titles + dates>
-```
+A lens judged relevant but left unresearched is **Not checked**, not N/A.
+“Not found” does not mean the fact is false, and “Checked” does not mean an
+issuer's underlying assertion has independent confirmation.
 
-Do not include the coverage table, tag lists or scenario tables here.
+Include the claims/numbers that support the answer; do not require 5–10
+entries. If a crucial fact is disputed, show its status and the effect on the
+conclusion. Do not label the whole table “verified” while hiding unverified
+entries.
 
-### Example (Normal, illustrative — company and figures are fictional)
+For analytical conclusions, include the best supported counter-case. Related
+companies need relation type and evidence when included. Cite actual exposure
+and the stage of any project. If there is no supported contradiction, say so
+or omit that section.
 
-User: 「A社の株、最近どう？」
+List **relevant confirmed upcoming events when available** with the source and
+date checked. Show estimated windows separately with their basis; do not turn
+a historical schedule into an exact confirmed date. If nothing is announced
+or checkable, state that plainly. Never add unrelated macro events to meet a
+minimum count.
 
-```markdown
-A社は10/24の上方修正で株価が2日で約18%上がりましたが、修正後の営業利益予想
-(120億円)はアナリスト予想の平均(約125億円)をまだ下回っていて、「予想ほど
-良くはない」という見方も残っています。上昇の大半は好材料というより売り方の
-買い戻しが効いた可能性があります。
+Suggest only useful remaining investigations, with the question, why it
+matters and where to verify it. Tags such as verify / disconfirm / compare /
+fill_gap / monitor are optional. Do not make up open questions when the user's
+request is complete.
 
-**ポイント**
-- 通期営業利益予想を100億円→120億円に上方修正(10/24、決算短信)
-- 株価は10/23終値2,450円→10/25終値2,890円(+18%)。同じ2日間のTOPIXは+0.6%
-- 信用倍率は0.7倍で売り長(10/23申込分)。上昇局面で売り残が約3割減少
+## 4. Report template
 
-**見落としやすい点**
-- 9月に発行した新株予約権(行使価額修正条項付)の行使が進むと、株価の上値を
-  抑える売りが出やすくなります。残りの行使可能株数は発行済株式の約6%。
-- 主要顧客B社が来週の決算で設備投資計画を出す予定で、A社の受注見通しに直結
-  します。
-
-**次に見るところ**
-- 11/5 B社決算(設備投資計画)、11/12 A社 第2四半期決算
-
-詳しいレポート形式(需給・関連企業・反論・シナリオ込み)でもまとめられます。
-
-Sources: A社 決算短信・業績予想修正(10/24)、JPX 銘柄別信用残(10/26公表)、…
-```
-
----
-
-## Report mode
+Adapt this template; remove unneeded sections and empty placeholder rows.
 
 ```markdown
-# <Company (code/ticker, market)> — <question in a few words>
-As of <YYYY-MM-DD>. Latest results used: <period, release date>.
+# <Company / theme> — <question>
+Information cut-off: <YYYY-MM-DD HH:MM timezone, or stated date>.
+Scope: <security/market, question and source limits>.
+Latest results used, when relevant: <period and release date>.
 
 ## Answer
-<2–5 sentences that directly answer the question, with the main reason and
-the main caveat.>
+<Direct answer, main supporting evidence and material uncertainty.>
 
-## Key numbers (verified)
-| Number | Value | As-of / period | Basis | Source | Status |
+## Key claims and numbers
+| Claim / figure | Value / status | Period / as-of | Publication date | Basis / unit | Source and check |
 |---|---|---|---|---|---|
-| ... | ... | ... | 連結 / GAAP … | <primary / media / aggregator> | 2 sources agree / primary checked / unverified |
+| <Only decisive entries> | ... | ... | ... | ... | <Source, attribution, passage checked / recomputed / unresolved> |
 
-## Key findings
-- <Fact with number, period, basis, as-of date> (source)
-- ...
+## Findings
+<Relevant facts, estimates and inferences, with sources next to each claim.>
 
 ## Coverage
-| Lens | Status | Note (one line) |
+| Lens | Status | Evidence or limitation |
 |---|---|---|
-| Business | Checked | ... |
-| Results & quality | Checked | ... |
-| Expectations | Partial | Company guidance found; consensus not found |
-| Valuation | Checked | ... |
-| Capital policy | Checked | ... |
-| Positioning | Checked | 信用倍率 x.x (MM/DD申込分, MM/DD公表) ... |
-| Ownership & insiders | Partial | ... |
-| Catalysts | Checked | Next earnings MM/DD ... |
-| Related companies | Checked | ... |
-| Macro | Checked | ... |
-| Sector data | Partial | ... |
-| News & sentiment | Checked | ... |
-| Price & liquidity | Checked | Move vs index/peers on MM/DD ... |
-| Risks | Checked | ... |
-Status: Checked / Partial / Not found / N/A (日本語: 確認済 / 一部 / 未取得 /
-対象外). Give a reason for anything other than Checked.
+| <Relevant lens; all 14 for a comprehensive report> | <Actual status> | ... |
 
-## Contradictions & surprises
-- <A vs B> → <what explains it / still open>
+## Contradictions and counter-evidence
+<What challenges the headline, how far it was resolved and what would change the view.>
 
 ## Related companies
-| Company | Relation | Evidence | Latest read-across |
+| Company | Relation | Evidence and stage | Effect on the question |
 |---|---|---|---|
-| ... | customer (≈X% of sales) | 有報 主要な顧客 FY2025 | capex guidance cut → negative |
+| ... | <customer / competitor / supplier / parent / inferred theme link> | ... | ... |
 
-## Strongest case against this conclusion
-<The best evidence or scenario in which the headline answer is wrong, and
-what would confirm it.>
-
-**Main supporting points:** ...
-
-## What seems priced in / scenarios
-| Scenario | Key assumptions | What must be true | Indicative impact |
+## Conditional scenarios
+| Scenario | Stated assumptions | Mechanism / computation | What would confirm or reject it |
 |---|---|---|---|
+| ... | ... | ... | ... |
 
-## Next dated events
-| Date | Event | Status |
-|---|---|---|
-| MM/DD | <company earnings / AGM / lock-up …> | confirmed (IR) / estimated |
-| MM/DD | <peer or customer results> | confirmed (source) |
-| MM/DD | <FOMC / 日銀 / CPI …> | confirmed |
+## Upcoming events
+<Only relevant announced dates with sources. List estimates separately,
+or say no relevant date could be confirmed within the stated source scope.>
 
-## Next investigations
-1. [disconfirm] <question> — why it matters — what to search/read
-2. [fill_gap] ...
-3. [monitor] <event/date> ...
+## Remaining questions
+<Only material unresolved questions, the evidence needed and its likely source.>
 
-## Data caveats
-- <lags, secondary data, definitional differences, source conflicts, gaps>
+## Data limitations
+<Material lags, unavailable evidence, source conflicts or comparability limits.>
 
-Sources: <titles, dates, URLs>
+Sources: <Titles, publication dates, URLs or supplied document/page identifiers>.
 ```
 
-Length guide (excluding sources): Standard ~1,000–2,000 words (日本語
-~3,000–6,000字); themes ~1,500–2,500 words (~4,000–8,000字); Deep up to
-~4,000 words (~12,000字). Keep coverage rows to one line.
+A short event report can be brief. For a broad report, ~1,000–2,000 words
+(日本語 ~3,000–6,000字) is often sufficient; a complex deep investigation may
+need more. The question and user instruction decide length, not a fixed quota.
+
+## 5. Citations, dates and gaps
+
+Use host-supported citations or direct links for fetched sources. Name
+provided documents/tables and pages without inventing public URLs. A source
+list supplements claim-level citations; it does not replace them.
+
+Identify market data's session/time and lagged data's as-of and publication
+dates. Distinguish company guidance from consensus, consolidated from parent
+figures, and GAAP from adjusted metrics. Show inputs for decisive calculations.
+
+Describe a missing claim according to the actual work: “not in the provided
+documents,” “not found in the issuer releases checked through <date>,” or
+“could not access the original filing.” Do not claim a search, independent
+review or current verification that did not occur.

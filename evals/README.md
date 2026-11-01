@@ -1,20 +1,84 @@
 # Evaluation
 
-Test cases are in `cases.json` and assertions in `rubric.md`. Each case was
-run with a mid-size model (Claude Sonnet) acting as the assistant with web
-search, with and without the skill. A separate stronger model graded every
-answer against the rubric, using the text only.
+Use the [current rubric](rubric.md) for v0.7 and later work. It checks accuracy,
+request fit and applicable output requirements with PASS / FAIL / N/A.
+A short, correct answer must not fail merely because it omits a coverage table
+or a fixed number of events. Conversely, format cannot rescue a fabricated fact.
 
-## How to run
+## Files and scope
 
-For each case, start a fresh agent session with web search enabled.
+| File | Purpose |
+|---|---|
+| [behavioral-cases.json](behavioral-cases.json) | Eight fictional, offline cases with worker inputs separated from grader assertions |
+| [behavioral-results-2026-10-31.md](behavioral-results-2026-10-31.md) | Actual v0.7.0 behavioral run: 8/8 cases, 34/34 case-specific assertions; limits stated |
+| [behavioral-run-2026-10-31.json](behavioral-run-2026-10-31.json) | Exact answers, per-assertion grades and evaluated skill hashes |
+| [cases.json](cases.json) | Ten live research prompts; verify their premises and retrieve current evidence |
+| [rubric.md](rubric.md) | Current common, scope/mode and request-specific checks |
+| [legacy-rubric-v0.4.md](legacy-rubric-v0.4.md) | Unchanged former active rubric, retained to interpret historical development scores |
+| [benchmark-2026-10-26/](benchmark-2026-10-26/) | Unchanged historical v0.4.0 benchmark, including its own rubric and caveats |
 
-- **With the skill:** install the skill, ask the prompt, and save the answer.
-- **Without the skill (baseline):** ask the same prompt with no skill
-  installed.
+The new behavioral cases are regression fixtures, not a new accuracy benchmark.
+Their presence does not mean that a model has passed them. Record actual runs
+separately with the evaluated revision and do not reuse the historical scores
+as evidence for the current version.
 
-Then grade every answer against `rubric.md`. Each assertion is PASS or FAIL,
-with a short quote as evidence.
+## Offline behavioral checks
+
+These cases require no market-data account, network, script or persistent state.
+The companies and documents are fictional; they test evidence handling and
+response behavior rather than claims about real securities.
+
+1. Select a case from `behavioral-cases.json` and give a **fresh worker only its
+   `input` object**, plus the skill folder. Do not pass the fixture file itself,
+   its `assertions`, this rubric, another run's output or the proposed fix.
+2. Ask naturally: "Use equity-research at <skill folder> for the following
+   request and supplied documents." Preserve the input's context, time,
+   conversation (if present), user prompt and source extracts. Honor its
+   document-only setting; the worker may read the skill's references.
+3. Save the exact worker response and any tool trace. Record skill commit or
+   snapshot, model/effort, date and case name. A single conversation covering
+   all cases is not equivalent to independent fresh sessions.
+4. Give a separate grader the input, answer, current rubric and that case's
+   assertions. Grade each applicable item with evidence, list critical
+   failures and distinguish unobserved process checks from passed checks.
+5. Report which cases were actually run and any remaining failures. If a skill
+   change follows a failure, rerun that case in a fresh context; preserve the
+   earlier result rather than silently replacing it.
+
+The eight cases cover a one-number answer, a cash-receipt follow-up, copied
+sources versus a corrected primary source, historical publication cutoffs,
+offline reporting with unknown events, operational milestones/photo evidence,
+scenario arithmetic, and instructions embedded in source text.
+
+## Live research checks
+
+For each selected prompt in `cases.json`, start a fresh session with the
+required web tools. The old benchmark prompts are now known development
+material, not held-out tests. The IPO/lock-up prompt deliberately requires
+checking its premise before calculating consequences.
+
+- **With the skill:** provide the skill and the exact prompt.
+- **Without the skill:** use the same prompt, information cutoff, model,
+  tool access and available budget in an independent session.
+- Save answers, cited sources and tool traces. Record quota/access failures;
+  a source unavailable to one run can affect the comparison.
+- Grade against the current rubric, blind to configuration where practical.
+  Do not award points for a report when the user requested brevity. Request
+  an explicit report only when testing Report mode, and record that variant.
+- Check material facts independently against sources. Report accuracy and
+  usefulness separately, with run counts and limitations.
+
+Depth ceilings remain Quick 30, Standard 80, Standard-wide 120 and Deep 160
+search queries/page fetches, shared with delegated work. They are maxima,
+not target counts. Observe counts from traces, not the number of tool wrappers.
+
+## Historical results — not remeasured for v0.7
+
+The following results were already recorded in this repository. Their original
+rubrics, prompts, budgets and output behavior differ from the current version.
+The original development answers are not included, so these scores are not
+reproduced by the current fixtures. Preserve them as historical evidence,
+with the limitations below.
 
 ## Results (2026-10-26)
 

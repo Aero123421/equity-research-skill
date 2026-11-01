@@ -11,13 +11,34 @@
 package: a `SKILL.md` plus reference files. It needs no code, no API keys and
 no server. Your agent's own web search does the fetching. The skill tells the
 agent:
+
 - what to look at;
 - how to read it correctly;
 - what to dig into next.
 
+## Quick start
+
+1. [Install](#install) the complete `skills/equity-research/` folder in your
+   agent's skills directory. No scripts, API keys or state folders are required
+   by the skill.
+2. Ask naturally; you do not need to choose a mode:
+
+   | Ask | What the agent does |
+   |---|---|
+   | 「フジクラの信用残を短く教えて」 | Checks the requested data, its date and the context needed to interpret it |
+   | 「前回から着金について新しい開示はある？」 | Refreshes the changed evidence and relevant time-sensitive facts |
+   | 「レーザーテックを深く調べて。結論は3行で」 | Researches deeply and follows the requested answer length |
+   | 「NVDAの決算をレポート形式で」 | Produces a structured report with the relevant evidence and gaps |
+3. For a historical question, give the cutoff date. Without web access, provide
+   the filings or data to analyze; the answer will state its freshness limits.
+
+The current workflow is **v0.7.0**. The benchmark results below describe older
+versions and do not establish the performance of this revision.
+
 The failure mode it targets is **tunnel vision**. A typical AI answer finds
 one story (great earnings, a hot theme) and builds the whole answer around it.
 It ignores:
+
 - expectations;
 - positioning (short interest, 信用残, 逆日歩);
 - related companies;
@@ -34,8 +55,7 @@ The skill loads in three layers, called *progressive disclosure*:
 1. **Metadata.** Name and description with JP/EN trigger words. It is always
    in context, so the agent knows when to use the skill.
 2. **`SKILL.md`.** Loaded when the skill triggers. It is a compact core
-   (~100 lines, ~6 KB) with the principles, a 7-step summary, budgets and the
-   two output modes, so it fits apps that limit skill size.
+   with request routing, evidence rules, research budgets and output modes.
 3. **`references/`.** The agent reads only the files the task needs:
    `workflow.md` (full steps + hygiene checklist) for Standard/Deep tasks,
    `output-template.md` for the answer, and topic files with definitions,
@@ -45,77 +65,66 @@ The skill loads in three layers, called *progressive disclosure*:
 
 ![Workflow](docs/images/workflow.svg)
 
-1. **Frame & budget.** Classify the request into one of 8 types:
-   - single-stock deep dive
-   - earnings
-   - price move
-   - event
-   - theme
-   - comparison
-   - macro
-   - positioning
-
-   Then set a hard budget of search + fetch calls.
-2. **Pin the security & the clock.** Confirm the code/ticker, fiscal year and
-   accounting basis, the latest results, and what happened in the last few
-   days.
-3. **Wide sweep.** Do a minimum check of all 14 lenses. Before marking
-   anything "not found", run a freshness sweep. Before naming a cause for a
-   price move, compare the stock with the index, its sector and peers.
+1. **Frame & budget.** Route focused facts, definitions and follow-up updates
+   to Quick; use Standard for broader analysis, Standard-wide for themes and
+   comparisons, or Deep when requested. Set a shared research ceiling and stop
+   when the material question is answered.
+2. **Pin the security & the clock.** Confirm the company/security, market,
+   question's cutoff date and relevant data basis. For historical analysis,
+   use information publicly available by the cutoff. For follow-ups, reuse
+   established evidence and refresh changes and volatile figures.
+3. **Scope the sweep.** Full company research considers all 14 lenses for
+   relevance. Focused requests retrieve the evidence needed for the question
+   and material adjacent context. Before explaining a price move, compare the
+   stock with the index, sector and peers over the same window.
 4. **Go deep.** Order: contradictions, then surprises, then high-impact
    unknowns, then second-order effects on related companies.
-5. **Disconfirm.** State the headline conclusion in one sentence. Then search
-   for the best evidence that *this* conclusion is wrong.
+5. **Disconfirm.** For analysis, test the headline against its strongest
+   alternative. For a simple fact, verify its definition, date and source.
 6. **Synthesize & check.** Build the priced-in view and conditional scenarios.
    Then run a consistency pass: tiers, figures, cross-references and
    comparative claims must all match.
-7. **Verify the key numbers.** Keep a ledger of the 5–10 numbers the
-   conclusion rests on, each with its source, date and basis. After drafting:
+7. **Verify decisive claims and numbers.** Keep a ledger of what the
+   conclusion rests on, each with its source, date, basis and attribution. After drafting:
+
    - re-open the sources, preferring primary documents;
    - re-check the status of time-limited items (warrants, lock-ups, offers);
    - recompute every derived figure.
 
-   Where the agent can start a sub-agent, a fresh agent checks the ledger
-   independently.
+   Use an independent check where useful and available, within the same
+   research budget. No persistent ledger or special folder is required.
 
 ## The 14 lenses
 
 ![14 research lenses](docs/images/coverage-lenses.svg)
 
-All 14 lenses are researched for every question. In Report mode, the answer
-includes a coverage table that shows the status of each lens: Checked /
-Partial / Not found / N/A. Blind spots stay visible instead of silently
-missing.
+The lenses are a map of possible blind spots, not 14 mandatory searches for
+every question. Full company research scans them for relevance; focused
+questions use the relevant lenses and important adjacent checks. A Report's
+coverage table distinguishes completed checks, unresolved gaps, work not
+performed and out-of-scope lenses. Normal answers show only material limits.
 
 ## What an answer looks like: two output modes
 
-Research depth and output length are separate. The agent always researches
-wide, but by default it answers short.
+Research depth and output length are separate. 「詳しく」「深く」 asks for
+deeper research or explanation; it does not by itself require every Report
+section. The user's requested length and format take priority.
 
 | | **Normal mode (default)** | **Report mode** |
 |---|---|---|
-| When | Everyday questions | 「詳しく」「レポートで」「全部」, or accepting the offer at the end of a Normal answer |
-| Length | ~300–800 words (日本語 ~800–2,000字) | Full structured report |
-| Shape | Prose: answer → key facts with dates → easy-to-miss points → what to watch | Answer → verified key numbers → coverage table → contradictions → related companies → strongest counter-case → dated events → next investigations → caveats |
+| When | Default, including focused questions and updates | Explicitly requested report or full structured format |
+| Length | As short as the question permits; follow the user's length request | Enough detail for the requested scope; follow the user's length request |
+| Shape | Direct answer, dated evidence and material caveats | Relevant sections: answer, key numbers, coverage, findings, counter-evidence, events and gaps |
 
-Normal mode example (fictional company):
+Normal mode example using fictional user-supplied figures, without a live lookup:
 
-> A社は10/24の上方修正で株価が2日で約18%上がりました。ただし、修正後の営業利益予想
-> (120億円)は、アナリスト予想の平均(約125億円)をまだ下回っています。上昇の大半は、
-> 売り方の買い戻しが効いた可能性があります。
+User: 「同じ時点の買い残120万株、売り残60万株なら、信用倍率は？」
+
+> 信用倍率は **2.0倍** です（120万株 ÷ 60万株）。提示された数値からの計算で、
+> 現在の公表残高を確認したものではありません。
 >
-> **ポイント**
-> - 通期営業利益予想を100億円から120億円に上方修正(10/24、決算短信)
-> - 2日間で+18%。同じ期間のTOPIXは+0.6%
-> - 信用倍率0.7倍の売り長(10/23申込分)
->
-> **見落としやすい点**
-> - 行使価額修正条項付の新株予約権(発行済株式の約6%)が残っていて、上値を抑えやすいです。
-> - 主要顧客B社の設備投資計画が11/5に出ます。
->
-> **次に見るところ:** 11/5 B社決算、11/12 A社 第2四半期決算
->
-> 詳しいレポート形式でもまとめられます。
+> 日証金の貸借倍率とは対象が異なります。また、この数字だけでは株価の上昇・下落は
+> 判断できません。
 
 ## Highlights
 
@@ -140,27 +149,44 @@ Normal mode example (fictional company):
   "関連銘柄" lists are not treated as proof of exposure.
 - **Budgets.**
 
-  | Depth | Search + fetch calls |
+  | Depth | Search queries + fetched pages (ceiling) |
   |---|---|
   | Quick | ≤ 30 |
   | Standard | ≤ 80 |
   | Standard-wide (themes) | ≤ 120 |
   | Deep (詳しく) | ≤ 160 |
 
-  Answer length is set by the output mode, not by the depth.
+  These are ceilings, not targets. Count queries and pages inside batched
+  tools, and share the ceiling across subagents and verification. Stop once
+  the necessary evidence is sufficient; answer length is independent of depth.
 - **Number verification.** The agent keeps a key-number ledger. After
   drafting, it:
   - re-opens the sources;
   - re-checks the status of time-limited items;
   - recomputes derived figures;
-  - when sources conflict, uses the primary or majority value, never a lone
-    outlier.
+  - when sources conflict, reconciles dates, definitions, revisions and source
+    independence, preferring the applicable primary disclosure. Repeated copies
+    of one claim are not independent corroboration; unresolved conflicts stay
+    explicit.
+- **Available evidence.** With no web access, the agent analyzes supplied
+  documents and states what it cannot refresh. Unconfirmed events remain
+  unconfirmed; no minimum number of figures, catalysts or follow-up questions
+  is required.
 - **Safety.** Web content is treated as data, never as instructions. The
   skill gives no buy/sell calls, only conditional scenarios.
 
 ## Evaluation
 
-### Held-out benchmark: recent stocks × 3 models (blind)
+### Current behavioral checks (v0.7.0)
+
+Eight fresh-context, fictional-document cases passed **34/34 case-specific
+assertions** under a separate grader. They cover short answers, updates,
+source corrections, historical cutoffs, missing data, project stages,
+arithmetic and source-instruction handling. Exact answers and limits are in
+[the run record](evals/behavioral-results-2026-10-31.md). This is not a live-data
+accuracy benchmark or a measured improvement over the baseline below.
+
+### Historical benchmark: v0.4.0, recent stocks × 3 models (blind)
 
 ![Held-out benchmark by model](docs/images/benchmark-models.svg)
 
@@ -191,8 +217,9 @@ What the results show:
   of time-limited items, handle conflicting sources, and recompute derived
   numbers.
 
-These results are for v0.4.0. v0.5.0 adds Normal and Report output modes
-and the number-verification step, and has not been re-benchmarked yet.
+These results are for **v0.4.0**, not the current v0.7.0 workflow. Later
+revisions changed output modes, verification and request routing. This
+historical benchmark has not been rerun for the current version.
 
 Method, caveats (semi-blind grading, single runs, a shared search quota that
 hurt late with-skill runs) and all grading files:
@@ -203,7 +230,8 @@ hurt late with-skill runs) and all grading files:
 ![Evaluation results](docs/images/eval-results.svg)
 
 Six development prompts were run with and without the skill and graded
-against [`evals/rubric.md`](evals/rubric.md). Three rounds of fixes covered:
+against the historical rubric recorded in [`evals/`](evals/README.md).
+Three rounds of fixes covered:
 - counter-arguments aimed at the conclusion itself;
 - a market-comparison gate;
 - dated next events;
@@ -227,11 +255,18 @@ Copy `skills/equity-research/` into your agent's skills directory:
 
 ```bash
 git clone https://github.com/Aero123421/equity-research-skill.git
-cp -r equity-research-skill/skills/equity-research ~/.claude/skills/
+mkdir -p "$HOME/.claude/skills/equity-research"
+cp -R equity-research-skill/skills/equity-research/. "$HOME/.claude/skills/equity-research/"
+test -f "$HOME/.claude/skills/equity-research/SKILL.md"
 ```
 
-The agent needs **web search and page fetch** tools. Paths can change; check
-your agent's documentation.
+This example targets Claude Code; substitute your agent's skills directory
+as needed. The installed folder must contain both `SKILL.md` and `references/`.
+Paths can change; check your agent's documentation.
+
+**Web search and page fetch** are needed to verify current market facts. If
+they are unavailable, the skill can still explain definitions or analyze
+provided filings/data, with the missing freshness check stated explicitly.
 
 ## Usage
 
@@ -266,9 +301,11 @@ docs/images/                      diagrams
 
 ## Maintenance
 
-Market rules and data publication practices change. The references carry a
-dated change log, last reviewed **2026-10-26**. When something changes, please
-open a PR and bump `metadata.last_reviewed` in `SKILL.md`.
+Workflow version: **v0.7.0**. Market rules and data publication practices
+change separately from the workflow. Each reference keeps its own review
+dates; only the specifically corrected subsections have new source checks.
+This revision does not claim a new audit of every rule. When updating a rule,
+cite its primary source and record the review date in the affected reference.
 
 ## Disclaimer
 
@@ -287,50 +324,81 @@ is subject to its source's terms.
 `equity-research` は、AIエージェントに日本株・米国株の調査を**視野狭窄に陥らず**
 行わせるための Agent Skill です。中身はテキストだけで、コード・APIキー・サーバーは
 不要です。エージェント自身のWeb検索を使い、このSkillが次の3点を指示します。
+
 - 何を見るか
 - どう正しく読むか
 - 次に何を掘るか
 
+### 使い始めるには
+
+`skills/equity-research/` フォルダ全体を[インストール](#install)して、普段どおりに
+質問してください。モード名を覚える必要はありません。
+
+- 「信用残を短く教えて」→ 必要な数字・時点・読み方を確認します。
+- 「前回から着金の開示は増えた？」→ 変わった情報と鮮度が重要な数値を更新します。
+- 「深く調べて、結論は3行で」→ 調査は深く、回答は指定の長さにします。
+- 「レポート形式で」→ 関係する観点を整理したレポートにします。
+
+Webを使えない環境では、渡した資料の範囲で分析し、最新状況を確認できていないことを
+明示します。過去時点の調査では、その時点までに公開された情報を使います。
+
 ### 何が変わるか
 
-- **結論の前に14の観点を確認します。**
+- **質問に応じて調査範囲を決めます。**
   業績、期待値、バリュエーション、需給、株主、イベント、関連企業、マクロ、業界、
-  ニュース、株価、リスクなどです。回答には観点ごとの確認状況を示す
-  カバレッジ表が付きます。
+  ニュース、株価、リスクなど14の観点を使います。企業全体の調査では関連性を広く確認し、
+  単一の数値や追加質問では、必要な根拠と解釈を変える周辺情報に絞ります。
+  レポートでは確認状況を表にし、未調査と情報未取得を区別します。
 - **需給データを正しく読みます。**
   - 空売り比率は市場全体の数字、空売り残高報告は個別銘柄の数字です。
   - 信用残は2026年9月28日から日次公表です。
   - 日証金の貸借倍率と逆日歩も確認します。
   - 米国の Short Interest と Short Volume は別物として扱います。
 - **株価変動の原因を言う前に、指数・セクター・同業と比べます。**
-- **自分の結論への最も強い反論を必ず示します。**
+- **分析では、自分の結論を覆す証拠も調べます。**
 - **関連企業は関係の種類と根拠で示します。**
   関係の種類は顧客、競合、仕入先、「同テーマ・未検証」などです。
   ニュースの「関連銘柄」リストは、恩恵の根拠として扱いません。
 - **普段は短く答えます(普通モード)。**
-  調査は14観点を広く行ったうえで、回答は会話の長さにまとめます。
-  「詳しく」「レポートで」と頼まれたときだけ、フルのレポート形式で出します。
+  「詳しく」「深く」は調査・説明の深さを指定します。「レポート形式で」などの指定が
+  あれば構成を整えます。回答の長さの指定を優先し、毎回の追加提案は必須にしません。
 - **重要な数字は検証してから使います。**
   結論を支える数字は、出典・時点・基準(連結か単体か等)を記録して管理します。回答を書いた後に、
   - 出典を開き直して値を確認します。
   - 期限のある情報(ワラント・ロックアップ等)は、今の状態を再確認します。
   - 自分で計算した数値は検算します。
-- **次の調査と、日付付きの今後のイベントを提案します。**
-  次の調査には verify / disconfirm / compare / fill_gap / monitor のタグが付きます。
+  - 食い違う数字は時点・基準・訂正・出典の独立性を照合し、多数決で決めません。
+- **今後のイベントは、確認できたものを示します。**
+  未公表の日付は埋めず、必要な次の調査があれば示します。数値やイベントに最低件数を
+  設けません。
 - **調査量に上限があります。**
 
-  | 深さ | 検索・取得の回数 |
+  | 深さ | 検索クエリ数＋取得ページ数の上限 |
   |---|---|
   | Quick | 30回まで |
   | Standard | 80回まで |
   | テーマ調査 | 120回まで |
   | 詳しく | 160回まで |
 
+  目標回数ではありません。根拠が揃えば早く終了します。まとめて呼び出した検索も
+  クエリ・ページ単位で数え、並列エージェントと検証にも同じ上限を共有します。
+
 ### 評価
 
-#### 話題の銘柄でのベンチマーク
+#### 今回の動作確認（v0.7.0）
+
+架空資料を使い、期待回答を見せない独立した8セッションで実行しました。
+別の採点者による確認で、**8ケース・34項目すべて合格**しています。
+実際の回答と評価上の制限は[実行記録](evals/behavioral-results-2026-10-31.md)を
+参照してください。実銘柄の調査精度や旧版からの改善率を測った結果ではありません。
+
+#### 過去のベンチマーク（v0.4.0）
+
+以下は旧版の測定結果です。現行のv0.7.0で同じベンチマークを再実行した結果では
+ありません。ワークフロー変更による改善幅は、この表からは判断できません。
 
 対象は開発に使っていない4銘柄です。
+
 - データセクション
 - キオクシア
 - CoreWeave
@@ -365,7 +433,9 @@ Haiku・Sonnet・Opus（いずれも5.5）のそれぞれで、Skillあり・な
 ### インストール
 
 `skills/equity-research/` を、使っているエージェントの skills ディレクトリに
-コピーしてください。場所は上の表を参照してください。
+コピーしてください。場所と初回インストール用コマンドは[上の手順](#install)を
+参照してください。`equity-research/SKILL.md` と `equity-research/references/` が
+揃った配置にします。
 
 ### 注意
 

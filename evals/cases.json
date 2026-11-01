@@ -31,22 +31,22 @@
   },
   {
     "name": "jp-datasection",
-    "type": "held-out: hot small cap (JP)",
+    "type": "historical benchmark prompt: hot small cap (JP)",
     "prompt": "データセクション（3905）ってなんでこんなに話題なの？今後どうなりそうか調べて。"
   },
   {
     "name": "jp-kioxia",
-    "type": "held-out: should-I-buy framing (JP)",
+    "type": "historical benchmark prompt: should-I-buy framing (JP)",
     "prompt": "キオクシアの株、今から買っても大丈夫？判断材料を調べて。"
   },
   {
     "name": "us-coreweave",
-    "type": "held-out: credit stress (US)",
+    "type": "historical benchmark prompt: credit stress (US)",
     "prompt": "What's going on with CoreWeave? Is the bond selloff a warning sign for the stock?"
   },
   {
     "name": "us-spacex",
-    "type": "held-out: IPO and lock-ups (US)",
-    "prompt": "How has SpaceX stock done since its IPO, and what should I watch for with the lockup expirations?"
+    "type": "historical benchmark prompt: IPO and lock-ups (US)",
+    "prompt": "How has SpaceX stock done since its IPO, and what should I watch for with the lockup expirations? First verify its current listing/IPO status and security identity; if the premise is unsupported, explain that instead of inventing trading or lock-up data."
   }
 ]
